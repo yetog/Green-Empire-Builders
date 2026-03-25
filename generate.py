@@ -1,0 +1,1034 @@
+#!/usr/bin/env python3
+"""
+Green Empire Landscaping — Static Site Generator
+Run: python3 generate.py
+Generates all pages from site.config.json + templates
+"""
+
+import json, os, re, shutil
+
+# ── Load config ───────────────────────────────────────────
+with open("site.config.json") as f:
+    cfg = json.load(f)
+
+B = cfg["brand"]
+SERVICES = cfg["services"]
+AREAS = cfg["serviceAreas"]
+REVIEWS = cfg["reviews"]
+FAQS = cfg["faqs"]
+
+PHONE = B["phone"]
+PHONE_RAW = B["phoneRaw"]
+NAME = B["name"]
+ADDRESS = f"{B['address']}, {B['city']}, {B['state']} {B['zip']}"
+PRIMARY = B["primaryColor"]
+SECONDARY = B["secondaryColor"]
+
+pages_created = []
+pages_failed = []
+
+# ── Helpers ───────────────────────────────────────────────
+
+def mkdir(path):
+    os.makedirs(path, exist_ok=True)
+
+def write(path, content):
+    d = os.path.dirname(path)
+    if d:
+        mkdir(d)
+    with open(path, "w") as f:
+        f.write(content)
+    pages_created.append(path.replace(os.getcwd() + "/", ""))
+
+def nav(active=""):
+    service_links = "\n".join(
+        f'<li><a href="/services/{s["slug"]}/">{s["name"]}</a></li>'
+        for s in SERVICES
+    )
+    mobile_service_links = "\n".join(
+        f'<a href="/services/{s["slug"]}/">{s["name"]}</a>'
+        for s in SERVICES
+    )
+    return f"""
+<header class="site-header">
+  <div class="top-bar">
+    <div class="container">
+      <span>Locally owned · {B['city']}, {B['state']} {B['zip']}</span>
+      <div class="top-bar-right">
+        <a href="tel:{PHONE_RAW}">📞 {PHONE}</a>
+        <a href="/request-service.html" class="top-bar-cta">Free Estimate</a>
+      </div>
+    </div>
+  </div>
+  <nav class="main-nav" aria-label="Main navigation">
+    <div class="container nav-inner">
+      <a href="/" class="nav-logo">
+        <img src="/images/logo.png" alt="{NAME} logo" height="52" />
+      </a>
+      <ul class="nav-links">
+        <li class="has-dropdown">
+          <a href="/services/" class="{'active' if active=='services' else ''}">Services ▾</a>
+          <ul class="dropdown">
+            <li><span class="dropdown-label">Residential &amp; Commercial</span></li>
+            {service_links}
+            <li><a href="/services/" class="dropdown-all">View All Services →</a></li>
+          </ul>
+        </li>
+        <li><a href="/about/" class="{'active' if active=='about' else ''}">About Us</a></li>
+        <li><a href="/service-areas/" class="{'active' if active=='areas' else ''}">Service Areas</a></li>
+        <li><a href="/reviews/" class="{'active' if active=='reviews' else ''}">Reviews</a></li>
+        <li><a href="/faq/" class="{'active' if active=='faq' else ''}">FAQ</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="tel:{PHONE_RAW}" class="nav-phone">{PHONE}</a>
+        <a href="/request-service.html" class="btn btn-primary btn-sm">Free Estimate</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+<div class="mobile-menu" id="mobile-menu">
+  <div class="mobile-menu-header">
+    <img src="/images/logo.png" alt="{NAME}" height="40" />
+    <button id="mobile-close" aria-label="Close">✕</button>
+  </div>
+  <a href="/request-service.html" class="btn btn-primary mobile-cta">Get Free Estimate</a>
+  <a href="tel:{PHONE_RAW}" class="btn btn-outline mobile-cta">{PHONE}</a>
+  <div class="mobile-nav-section">Services</div>
+  {mobile_service_links}
+  <div class="mobile-nav-section">Company</div>
+  <a href="/about/">About Us</a>
+  <a href="/service-areas/">Service Areas</a>
+  <a href="/reviews/">Reviews</a>
+  <a href="/faq/">FAQ</a>
+</div>"""
+
+def footer():
+    service_links = "\n".join(
+        f'<li><a href="/services/{s["slug"]}/">{s["name"]}</a></li>'
+        for s in SERVICES
+    )
+    nassau = [a for a in AREAS if a["county"] == "Nassau"][:6]
+    suffolk = [a for a in AREAS if a["county"] == "Suffolk"][:6]
+    nassau_links = "\n".join(f'<li><a href="/service-areas/{a["slug"]}/">{a["name"]}</a></li>' for a in nassau)
+    suffolk_links = "\n".join(f'<li><a href="/service-areas/{a["slug"]}/">{a["name"]}</a></li>' for a in suffolk)
+    return f"""
+<footer class="site-footer">
+  <div class="footer-main">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="/"><img src="/images/logo.png" alt="{NAME}" height="56" class="footer-logo" /></a>
+        <p>{NAME} — Long Island's trusted landscaping professionals. Based in {B['city']}, NY. Licensed, insured, open 24/7.</p>
+        <a href="tel:{PHONE_RAW}" class="footer-phone">{PHONE}</a>
+        <p class="footer-address">{ADDRESS}</p>
+        <div class="footer-social">
+          <a href="{B['facebook']}" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="{B['instagram']}" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Our Services</h4>
+        <ul>{service_links}</ul>
+      </div>
+      <div class="footer-col">
+        <h4>Nassau County</h4>
+        <ul>{nassau_links}<li><a href="/service-areas/">All Areas →</a></li></ul>
+      </div>
+      <div class="footer-col">
+        <h4>Suffolk County</h4>
+        <ul>{suffolk_links}<li><a href="/service-areas/">All Areas →</a></li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container footer-bottom-inner">
+      <span>&copy; <span id="yr"></span> {NAME}. All rights reserved. Each location independently owned and operated.</span>
+      <div class="footer-legal">
+        <a href="/privacy-policy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Use</a>
+        <a href="/accessibility.html">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+<script src="/js/main.js"></script>"""
+
+def head(title, desc, canonical, schema=""):
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content="{desc}" />
+  <link rel="canonical" href="https://{B['domain']}{canonical}" />
+  <meta property="og:title" content="{title}" />
+  <meta property="og:description" content="{desc}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://{B['domain']}{canonical}" />
+  <meta property="og:image" content="/images/hero-bg.jpg" />
+  {schema}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/main.css" />
+</head>
+<body>"""
+
+def booking_form(compact=False):
+    service_opts = "\n".join(
+        f'<option value="{s["slug"]}">{s["name"]}</option>'
+        for s in SERVICES
+    )
+    if compact:
+        return f"""
+<div class="booking-card">
+  <div class="booking-card-header">
+    <h3>Get a Free Estimate</h3>
+    <p>Response within 1 business hour</p>
+  </div>
+  <form action="https://formspree.io/f/{B['formspreeId']}" method="POST" class="booking-form">
+    <div class="form-group"><label>Name *</label><input type="text" name="name" required placeholder="Your full name" /></div>
+    <div class="form-group"><label>Phone *</label><input type="tel" name="phone" required placeholder="{PHONE}" /></div>
+    <div class="form-group"><label>Service</label>
+      <select name="service"><option value="">Select a service...</option>{service_opts}</select>
+    </div>
+    <div class="form-group"><label>Details</label><textarea name="message" rows="3" placeholder="Tell us about your project..."></textarea></div>
+    <input type="text" name="_gotcha" style="display:none" />
+    <input type="hidden" name="_next" value="/thank-you.html" />
+    <button type="submit" class="btn btn-primary btn-block">Send Request →</button>
+  </form>
+</div>"""
+    return f"""
+<div class="booking-card">
+  <div class="booking-card-header">
+    <h3>Request a Free Estimate</h3>
+    <p>We respond within 1 business hour</p>
+  </div>
+  <form action="https://formspree.io/f/{B['formspreeId']}" method="POST" class="booking-form">
+    <div class="form-row">
+      <div class="form-group"><label>First Name *</label><input type="text" name="first_name" required placeholder="John" /></div>
+      <div class="form-group"><label>Last Name *</label><input type="text" name="last_name" required placeholder="Smith" /></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Phone *</label><input type="tel" name="phone" required placeholder="{PHONE}" /></div>
+      <div class="form-group"><label>ZIP Code *</label><input type="text" name="zip" required placeholder="{B['zip']}" maxlength="5" /></div>
+    </div>
+    <div class="form-group"><label>Email</label><input type="email" name="email" placeholder="you@email.com" /></div>
+    <div class="form-group"><label>Service Needed *</label>
+      <select name="service" required><option value="">Select a service...</option>{service_opts}<option value="other">Other / Not Sure</option></select>
+    </div>
+    <div class="form-group"><label>Project Details</label><textarea name="message" rows="4" placeholder="Describe your project, property size, timeline..."></textarea></div>
+    <input type="text" name="_gotcha" style="display:none" />
+    <input type="hidden" name="_subject" value="New Estimate Request — {NAME}" />
+    <input type="hidden" name="_next" value="/thank-you.html" />
+    <button type="submit" class="btn btn-primary btn-block">Send My Request →</button>
+    <p class="form-disclaimer">We respect your privacy. No spam, ever.</p>
+  </form>
+</div>"""
+
+def review_cards(city=None):
+    cards = []
+    for r in REVIEWS:
+        loc = city + ", NY" if city else r["location"]
+        stars = "★" * r["rating"]
+        cards.append(f"""
+    <div class="review-card">
+      <div class="review-stars">{stars}</div>
+      <p class="review-text">"{r['text']}"</p>
+      <div class="review-author">{r['name']}</div>
+      <div class="review-location">{loc}</div>
+    </div>""")
+    return "\n".join(cards)
+
+def service_area_links():
+    return "\n".join(
+        f'<a href="/service-areas/{a["slug"]}/" class="city-pill">{a["name"]}</a>'
+        for a in AREAS
+    )
+
+def breadcrumbs(crumbs):
+    items = []
+    schema_items = []
+    for i, (label, url) in enumerate(crumbs):
+        if url:
+            items.append(f'<li><a href="{url}">{label}</a></li>')
+        else:
+            items.append(f'<li>{label}</li>')
+        schema_items.append(f'{{"@type":"ListItem","position":{i+1},"name":"{label}","item":"https://{B["domain"]}{url or ""}"}}'  )
+    schema = f"""<script type="application/ld+json">
+  {{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{",".join(schema_items)}]}}
+  </script>"""
+    return f'<nav class="breadcrumbs" aria-label="Breadcrumb"><div class="container"><ol class="breadcrumb-list">{"".join(items)}</ol></div></nav>', schema
+
+LOCAL_BIZ_SCHEMA = f"""<script type="application/ld+json">
+  {{
+    "@context":"https://schema.org",
+    "@type":"LandscapingBusiness",
+    "name":"{NAME}",
+    "url":"https://{B['domain']}/",
+    "telephone":"{PHONE}",
+    "address":{{"@type":"PostalAddress","streetAddress":"{B['address']}","addressLocality":"{B['city']}","addressRegion":"{B['state']}","postalCode":"{B['zip']}","addressCountry":"US"}},
+    "priceRange":"$$",
+    "openingHours":"Mo-Su 00:00-23:59",
+    "geo":{{"@type":"GeoCoordinates","latitude":40.7065,"longitude":-73.6212}},
+    "areaServed":{json.dumps([{"@type":"City","name":a["name"]} for a in AREAS])},
+    "sameAs":["{B['facebook']}","{B['instagram']}"]
+  }}
+  </script>"""
+
+# ─────────────────────────────────────────────────────────
+# PAGE: Homepage
+# ─────────────────────────────────────────────────────────
+
+def make_homepage():
+    service_cards = "\n".join(f"""
+    <div class="service-card">
+      <div class="service-card-icon">{s['icon']}</div>
+      <div class="service-card-body">
+        <h3>{s['name']}</h3>
+        <p>{s['description']}</p>
+        <a href="/services/{s['slug']}/" class="card-link">Learn More →</a>
+      </div>
+    </div>""" for s in SERVICES)
+
+    faq_items = "\n".join(f"""
+    <div class="faq-item">
+      <button class="faq-question">{f['q']} <span class="faq-icon">+</span></button>
+      <div class="faq-answer"><p>{f['a']}</p></div>
+    </div>""" for f in FAQS[:5])
+
+    content = f"""{head(
+        f"Landscaping Services in {B['city']}, NY | {NAME} | {PHONE}",
+        f"{NAME} provides professional lawn care and landscaping in {B['city']}, NY. Serving Nassau & Suffolk Counties. Call {PHONE} for a free estimate!",
+        "/",
+        LOCAL_BIZ_SCHEMA
+    )}
+{nav()}
+
+<!-- HERO -->
+<section class="hero">
+  <img class="hero-bg" src="/images/hero-bg.jpg" alt="Beautiful Long Island backyard landscaped by {NAME}" />
+  <div class="hero-overlay"></div>
+  <div class="container hero-inner">
+    <div class="hero-content">
+      <span class="hero-badge">Hempstead, NY · Nassau &amp; Suffolk Counties</span>
+      <h1>{B['tagline']}</h1>
+      <p>Trust Green Empire's local experts to transform and maintain your residential or commercial property. Licensed, insured, open 24/7.</p>
+      <div class="hero-actions">
+        <a href="/request-service.html" class="btn btn-primary btn-lg">Get a Free Estimate</a>
+        <a href="tel:{PHONE_RAW}" class="btn btn-outline-white btn-lg">Call {PHONE}</a>
+      </div>
+      <div class="hero-trust">
+        <span>⭐ 5-Star Rated</span>
+        <span>🛡️ Licensed &amp; Insured</span>
+        <span>🕐 Open 24/7</span>
+      </div>
+    </div>
+    <div class="hero-form">
+      {booking_form(compact=True)}
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="container stats-grid">
+    <div class="stat"><span class="stat-n">10+</span><span class="stat-l">Years on Long Island</span></div>
+    <div class="stat"><span class="stat-n">500+</span><span class="stat-l">Happy Customers</span></div>
+    <div class="stat"><span class="stat-n">20+</span><span class="stat-l">Cities Served</span></div>
+    <div class="stat"><span class="stat-n">100%</span><span class="stat-l">Satisfaction Guaranteed</span></div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">What We Do</span>
+      <h2>Complete Landscaping Services for Long Island</h2>
+      <p>From weekly lawn care to full outdoor transformations — residential and commercial.</p>
+    </div>
+    <div class="service-grid">
+      {service_cards}
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="split-section">
+  <div class="split-img">
+    <img src="/images/hero-bg.jpg" alt="Green Empire Landscaping team working on a Long Island property" />
+  </div>
+  <div class="split-content">
+    <span class="eyebrow">Why Green Empire</span>
+    <h2>{B['city']}'s Most Trusted Landscaping Team</h2>
+    <p>We're not a national chain — we're your neighbors. Based at 64 Hilton Ave in Hempstead, NY, we know Long Island properties and what it takes to make them stand out.</p>
+    <ul class="check-list">
+      <li>Fully licensed and insured in New York State</li>
+      <li>Transparent, upfront pricing — no hidden fees</li>
+      <li>Available 24/7 for snow removal and emergencies</li>
+      <li>Residential and commercial expertise</li>
+      <li>100% satisfaction guarantee on every job</li>
+    </ul>
+    <a href="/about/" class="btn btn-primary">Meet Our Team</a>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section section-light" id="reviews">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Reviews</span>
+      <h2>What Long Island Homeowners Are Saying</h2>
+    </div>
+    <div class="review-grid">
+      {review_cards()}
+    </div>
+    <div class="text-center mt-4">
+      <a href="/reviews/" class="btn btn-outline">Read More Reviews</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREAS -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Service Areas</span>
+      <h2>Serving All of Long Island, NY</h2>
+      <p>We cover Nassau and Suffolk Counties. Don't see your city? Call us — we likely serve you.</p>
+    </div>
+    <div class="city-grid">
+      {service_area_links()}
+    </div>
+  </div>
+</section>
+
+<!-- FAQ PREVIEW -->
+<section class="section section-light">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">FAQ</span>
+      <h2>Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-list">
+      {faq_items}
+    </div>
+    <div class="text-center mt-4">
+      <a href="/faq/" class="btn btn-outline">See All FAQs</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner">
+  <div class="container">
+    <h2>Ready for a Greener Property?</h2>
+    <p>Call or request online — we respond within 1 business hour. Free, no-obligation estimates.</p>
+    <div class="cta-actions">
+      <a href="/request-service.html" class="btn btn-secondary btn-lg">Get a Free Estimate</a>
+      <a href="tel:{PHONE_RAW}" class="btn btn-outline-white btn-lg">Call {PHONE}</a>
+    </div>
+  </div>
+</section>
+
+{footer()}
+</body></html>"""
+    write("index.html", content)
+
+
+# ─────────────────────────────────────────────────────────
+# PAGE: Service detail pages
+# ─────────────────────────────────────────────────────────
+
+def make_service_page(s):
+    bc, bc_schema = breadcrumbs([("Home", "/"), ("Services", "/services/"), (s["name"], None)])
+    bullets = "\n".join(f"<li>{b}</li>" for b in s["bullets"])
+    other_services = "\n".join(
+        f'<a href="/services/{o["slug"]}/" class="related-link">{o["icon"]} {o["name"]}</a>'
+        for o in SERVICES if o["slug"] != s["slug"]
+    )
+    content = f"""{head(
+        f"{s['name']} in {B['city']}, NY | {NAME} | {PHONE}",
+        f"Professional {s['name'].lower()} in {B['city']}, NY and all of Long Island. {NAME} — licensed, insured, open 24/7. Call {PHONE} for a free estimate.",
+        f"/services/{s['slug']}/",
+        bc_schema
+    )}
+{nav(active="services")}
+{bc}
+
+<section class="page-hero">
+  <div class="container">
+    <h1>{s['name']} in {B['city']}, NY</h1>
+    <p>{s['heroText']}</p>
+    <div class="hero-actions">
+      <a href="/request-service.html" class="btn btn-secondary btn-lg">Get Free Estimate</a>
+      <a href="tel:{PHONE_RAW}" class="btn btn-outline-white">Call {PHONE}</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container content-sidebar-layout">
+    <div class="content-main">
+      <h2>Professional {s['name']} on Long Island</h2>
+      <p>{s['description']} {NAME} has been serving {B['city']} and Long Island for years, delivering reliable results for homeowners and businesses across Nassau and Suffolk Counties.</p>
+      <h3>What's Included</h3>
+      <ul class="check-list">{bullets}</ul>
+      <h3>Why Choose {NAME}?</h3>
+      <p>We're locally owned and operated in {B['city']}, NY — not a national franchise. Every job is handled by our trained crew, and we back every service with a 100% satisfaction guarantee.</p>
+      <div class="cta-inline">
+        <a href="/request-service.html" class="btn btn-primary btn-lg">Get a Free Estimate</a>
+        <a href="tel:{PHONE_RAW}" class="btn btn-outline">Call {PHONE}</a>
+      </div>
+      <h3>Service Areas</h3>
+      <p>We provide {s['name'].lower()} throughout Long Island including:</p>
+      <div class="city-grid city-grid-sm">
+        {service_area_links()}
+      </div>
+    </div>
+    <aside class="content-sidebar">
+      {booking_form(compact=True)}
+      <div class="sidebar-contact">
+        <h4>Contact Us</h4>
+        <p>📞 <a href="tel:{PHONE_RAW}">{PHONE}</a></p>
+        <p>📍 {ADDRESS}</p>
+        <p>🕐 {B['hours']}</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="section section-light">
+  <div class="container">
+    <h2 class="text-center mb-4">What Customers Say</h2>
+    <div class="review-grid">{review_cards()}</div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="text-center mb-4">Other Services We Offer</h2>
+    <div class="related-grid">{other_services}</div>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <div class="container">
+    <h2>Need {s['name']} in {B['city']}, NY?</h2>
+    <p>Call or fill out the form above — we respond within 1 business hour with a free estimate.</p>
+    <div class="cta-actions">
+      <a href="/request-service.html" class="btn btn-secondary btn-lg">Get Free Estimate</a>
+      <a href="tel:{PHONE_RAW}" class="btn btn-outline-white btn-lg">Call {PHONE}</a>
+    </div>
+  </div>
+</section>
+{footer()}
+</body></html>"""
+    write(f"services/{s['slug']}/index.html", content)
+
+
+# ─────────────────────────────────────────────────────────
+# PAGE: Services hub
+# ─────────────────────────────────────────────────────────
+
+def make_services_hub():
+    cards = "\n".join(f"""
+    <div class="service-card">
+      <div class="service-card-icon">{s['icon']}</div>
+      <div class="service-card-body">
+        <h3><a href="/services/{s['slug']}/">{s['name']}</a></h3>
+        <p>{s['description']}</p>
+        <a href="/services/{s['slug']}/" class="card-link">Learn More →</a>
+      </div>
+    </div>""" for s in SERVICES)
+
+    bc, bc_schema = breadcrumbs([("Home", "/"), ("Services", None)])
+    content = f"""{head(
+        f"Landscaping Services | {NAME} | {PHONE}",
+        f"{NAME} offers complete landscaping services in {B['city']}, NY and all of Long Island. Lawn care, landscape design, hardscape, snow removal & more. Call {PHONE}.",
+        "/services/",
+        bc_schema
+    )}
+{nav(active="services")}
+{bc}
+<section class="page-hero">
+  <div class="container">
+    <h1>Our Landscaping Services</h1>
+    <p>Complete residential and commercial landscaping for Long Island homeowners and businesses. Licensed, insured, and locally owned in {B['city']}, NY.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="service-grid">{cards}</div>
+  </div>
+</section>
+<section class="cta-banner">
+  <div class="container">
+    <h2>Not Sure What You Need?</h2>
+    <p>Call us and describe your property — we'll recommend the right services and give you a free estimate.</p>
+    <div class="cta-actions">
+      <a href="/request-service.html" class="btn btn-secondary btn-lg">Get Free Estimate</a>
+      <a href="tel:{PHONE_RAW}" class="btn btn-outline-white btn-lg">Call {PHONE}</a>
+    </div>
+  </div>
+</section>
+{footer()}
+</body></html>"""
+    write("services/index.html", content)
+
+
+# ─────────────────────────────────────────────────────────
+# PAGE: City / Service Area pages
+# ─────────────────────────────────────────────────────────
+
+def make_city_page(area):
+    city = area["name"]
+    slug = area["slug"]
+    county = area["county"]
+    nearby = ", ".join(f"<strong>{n}</strong>" for n in area["nearbyAreas"])
+    bc, bc_schema = breadcrumbs([("Home", "/"), ("Service Areas", "/service-areas/"), (city, None)])
+
+    city_schema = f"""<script type="application/ld+json">
+  {{"@context":"https://schema.org","@type":"LandscapingBusiness",
+    "name":"{NAME} — {city}","url":"https://{B['domain']}/service-areas/{slug}/",
+    "telephone":"{PHONE}","priceRange":"$$",
+    "address":{{"@type":"PostalAddress","addressLocality":"{city}","addressRegion":"{B['state']}","addressCountry":"US"}},
+    "areaServed":{{"@type":"City","name":"{city}"}}
+  }}
+  </script>"""
+
+    service_list = "\n".join(
+        f'<li><a href="/services/{s["slug"]}/">{s["icon"]} {s["name"]} in {city}</a></li>'
+        for s in SERVICES
+    )
+
+    content = f"""{head(
+        f"Landscaping Services in {city}, NY | {NAME} | {PHONE}",
+        f"Professional landscaping in {city}, NY. {NAME} serves {city} and all of {county} County. Lawn care, design, hardscape, snow removal & more. Call {PHONE}.",
+        f"/service-areas/{slug}/",
+        bc_schema + city_schema
+    )}
+{nav(active="areas")}
+{bc}
+
+<section class="page-hero">
+  <div class="container">
+    <h1>Landscaping Services in {city}, NY</h1>
+    <p>Green Empire Landscaping serves {city} and surrounding {county} County communities. Call {PHONE} for a free estimate today.</p>
+    <div class="hero-actions">
+      <a href="/request-service.html" class="btn btn-secondary btn-lg">Get Free Estimate</a>
+      <a href="tel:{PHONE_RAW}" class="btn btn-outline-white">Call {PHONE}</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container content-sidebar-layout">
+    <div class="content-main">
+      <h2>Your Local Landscaping Experts in {city}</h2>
+      <p>When {city} homeowners and businesses need reliable landscaping, they call {NAME}. We're based right here in {B['city']}, just minutes away — not a national franchise sending whoever is available. Our team knows {county} County properties and delivers consistent, high-quality work on every visit.</p>
+      <p>From weekly lawn maintenance to complete outdoor renovations, we handle everything for residential and commercial properties throughout {city} and surrounding {county} County.</p>
+
+      <h3>Services We Offer in {city}, NY</h3>
+      <ul class="check-list">{service_list}</ul>
+
+      <h3>Areas Near {city} We Also Serve</h3>
+      <p>In addition to {city}, we serve {nearby} and more throughout {county} County.
+      <a href="/service-areas/">View all service areas →</a></p>
+    </div>
+    <aside class="content-sidebar">
+      {booking_form(compact=True)}
+      <div class="sidebar-contact">
+        <h4>Contact Us</h4>
+        <p>📞 <a href="tel:{PHONE_RAW}">{PHONE}</a></p>
+        <p>📍 {ADDRESS}</p>
+        <p>🕐 {B['hours']}</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="section section-light">
+  <div class="container">
+    <h2 class="text-center mb-4">What {city} Residents Say</h2>
+    <div class="review-grid">{review_cards(city)}</div>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <div class="container">
+    <h2>Need Landscaping in {city}, NY?</h2>
+    <p>We're nearby and ready. Call or submit the form — response within 1 business hour.</p>
+    <div class="cta-actions">
+      <a href="/request-service.html" class="btn btn-secondary btn-lg">Get Free Estimate</a>
+      <a href="tel:{PHONE_RAW}" class="btn btn-outline-white btn-lg">Call {PHONE}</a>
+    </div>
+  </div>
+</section>
+{footer()}
+</body></html>"""
+    write(f"service-areas/{slug}/index.html", content)
+
+
+# ─────────────────────────────────────────────────────────
+# PAGE: Service Areas hub
+# ─────────────────────────────────────────────────────────
+
+def make_areas_hub():
+    nassau = [a for a in AREAS if a["county"] == "Nassau"]
+    suffolk = [a for a in AREAS if a["county"] == "Suffolk"]
+    def area_cards(areas):
+        return "\n".join(f"""
+        <a href="/service-areas/{a['slug']}/" class="area-card">
+          <h3>{a['name']}</h3>
+          <span>{a['county']} County</span>
+        </a>""" for a in areas)
+
+    bc, bc_schema = breadcrumbs([("Home", "/"), ("Service Areas", None)])
+    content = f"""{head(
+        f"Landscaping Service Areas — Long Island, NY | {NAME}",
+        f"{NAME} serves Nassau and Suffolk Counties on Long Island. Click your city to see local landscaping services and get a free estimate.",
+        "/service-areas/",
+        bc_schema
+    )}
+{nav(active="areas")}
+{bc}
+<section class="page-hero">
+  <div class="container">
+    <h1>Long Island Landscaping Service Areas</h1>
+    <p>{NAME} covers Nassau and Suffolk Counties. Select your city for local information and a free estimate.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <h2>Nassau County</h2>
+    <div class="area-grid">{area_cards(nassau)}</div>
+    <h2 class="mt-4">Suffolk County</h2>
+    <div class="area-grid">{area_cards(suffolk)}</div>
+    <p class="mt-4" style="color:var(--text-mid)">Don't see your city? <a href="tel:{PHONE_RAW}">Call us at {PHONE}</a> — we likely serve your area.</p>
+  </div>
+</section>
+<section class="cta-banner">
+  <div class="container">
+    <h2>Serving All of Long Island</h2>
+    <p>Call or request online for service in your area.</p>
+    <div class="cta-actions">
+      <a href="/request-service.html" class="btn btn-secondary btn-lg">Get Free Estimate</a>
+      <a href="tel:{PHONE_RAW}" class="btn btn-outline-white btn-lg">Call {PHONE}</a>
+    </div>
+  </div>
+</section>
+{footer()}
+</body></html>"""
+    write("service-areas/index.html", content)
+
+
+# ─────────────────────────────────────────────────────────
+# PAGE: About
+# ─────────────────────────────────────────────────────────
+
+def make_about():
+    bc, bc_schema = breadcrumbs([("Home", "/"), ("About Us", None)])
+    content = f"""{head(
+        f"About Us | {NAME} — Hempstead, NY",
+        f"Learn about {NAME}, Long Island's trusted landscaping company based in {B['city']}, NY. Locally owned, licensed, insured, and open 24/7.",
+        "/about/",
+        bc_schema
+    )}
+{nav(active="about")}
+{bc}
+<section class="page-hero">
+  <div class="container">
+    <h1>About {NAME}</h1>
+    <p>Long Island's locally owned landscaping company — based in {B['city']}, NY.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="split-section">
+      <div class="split-img"><img src="/images/hero-bg.jpg" alt="{NAME} team" /></div>
+      <div class="split-content">
+        <span class="eyebrow">Who We Are</span>
+        <h2>Built for Long Island</h2>
+        <p>{NAME} is a locally owned and operated landscaping company based at 64 Hilton Ave in Hempstead, NY. We serve residential homeowners and commercial properties throughout Nassau and Suffolk Counties.</p>
+        <p>We're not a national franchise — every crew member is local, every estimate is honest, and every job is backed by our 100% satisfaction guarantee.</p>
+        <ul class="check-list">
+          <li>Fully licensed and insured in New York State</li>
+          <li>Locally owned — based in {B['city']}, NY</li>
+          <li>Experienced crews with background checks</li>
+          <li>100% satisfaction guarantee</li>
+          <li>Available 24/7 for snow and emergencies</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section section-light">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Our Promise</span>
+      <h2>The Green Empire Difference</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card"><div class="feature-icon">📍</div><h3>Local Expertise</h3><p>We know Long Island's soil, climate, and neighborhoods. Our recommendations are built for this area.</p></div>
+      <div class="feature-card"><div class="feature-icon">💰</div><h3>Transparent Pricing</h3><p>You'll always know what you're paying before we start. No surprises, no hidden fees.</p></div>
+      <div class="feature-card"><div class="feature-icon">⭐</div><h3>Satisfaction Guaranteed</h3><p>Not happy? We'll make it right. Every service is backed by our 100% guarantee.</p></div>
+      <div class="feature-card"><div class="feature-icon">🕐</div><h3>Open 24/7</h3><p>Storms don't keep business hours. Neither do we. Available around the clock for snow and emergencies.</p></div>
+    </div>
+  </div>
+</section>
+<section class="cta-banner">
+  <div class="container">
+    <h2>Ready to Work with Us?</h2>
+    <p>Call or request a free estimate today.</p>
+    <div class="cta-actions">
+      <a href="/request-service.html" class="btn btn-secondary btn-lg">Get Free Estimate</a>
+      <a href="tel:{PHONE_RAW}" class="btn btn-outline-white btn-lg">Call {PHONE}</a>
+    </div>
+  </div>
+</section>
+{footer()}
+</body></html>"""
+    write("about/index.html", content)
+
+
+# ─────────────────────────────────────────────────────────
+# PAGE: FAQ
+# ─────────────────────────────────────────────────────────
+
+def make_faq():
+    faq_items = "\n".join(f"""
+    <div class="faq-item">
+      <button class="faq-question">{f['q']} <span class="faq-icon">+</span></button>
+      <div class="faq-answer"><p>{f['a']}</p></div>
+    </div>""" for f in FAQS)
+
+    faq_schema_items = json.dumps([{"@type":"Question","name":f["q"],"acceptedAnswer":{"@type":"Answer","text":f["a"]}} for f in FAQS])
+    faq_schema = f'<script type="application/ld+json">{{"@context":"https://schema.org","@type":"FAQPage","mainEntity":{faq_schema_items}}}</script>'
+
+    bc, bc_schema = breadcrumbs([("Home", "/"), ("FAQ", None)])
+    content = f"""{head(
+        f"FAQ — Landscaping Questions Answered | {NAME}",
+        f"Common questions about {NAME}'s landscaping services in {B['city']}, NY. Get answers about pricing, scheduling, service areas, and more.",
+        "/faq/",
+        bc_schema + faq_schema
+    )}
+{nav(active="faq")}
+{bc}
+<section class="page-hero">
+  <div class="container">
+    <h1>Frequently Asked Questions</h1>
+    <p>Everything you need to know about {NAME}'s services on Long Island.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container" style="max-width:800px">
+    <div class="faq-list">{faq_items}</div>
+    <div class="cta-inline mt-4">
+      <p>Still have questions? <a href="tel:{PHONE_RAW}">Call us at {PHONE}</a> — we're open 24/7.</p>
+    </div>
+  </div>
+</section>
+<section class="cta-banner">
+  <div class="container">
+    <h2>Ready to Get Started?</h2>
+    <div class="cta-actions">
+      <a href="/request-service.html" class="btn btn-secondary btn-lg">Get Free Estimate</a>
+      <a href="tel:{PHONE_RAW}" class="btn btn-outline-white btn-lg">Call {PHONE}</a>
+    </div>
+  </div>
+</section>
+{footer()}
+</body></html>"""
+    write("faq/index.html", content)
+
+
+# ─────────────────────────────────────────────────────────
+# PAGE: Reviews
+# ─────────────────────────────────────────────────────────
+
+def make_reviews():
+    all_reviews = "\n".join(f"""
+    <div class="review-card">
+      <div class="review-stars">{"★" * r['rating']}</div>
+      <p class="review-text">"{r['text']}"</p>
+      <div class="review-author">{r['name']}</div>
+      <div class="review-location">{r['location']}</div>
+    </div>""" for r in REVIEWS)
+
+    bc, bc_schema = breadcrumbs([("Home", "/"), ("Reviews", None)])
+    content = f"""{head(
+        f"Customer Reviews | {NAME} — Long Island, NY",
+        f"Read reviews from satisfied customers of {NAME} in {B['city']}, NY and Long Island. See why we're rated 5 stars.",
+        "/reviews/",
+        bc_schema
+    )}
+{nav(active="reviews")}
+{bc}
+<section class="page-hero">
+  <div class="container">
+    <h1>Customer Reviews</h1>
+    <p>See what Long Island homeowners and businesses say about {NAME}.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="review-grid">{all_reviews}</div>
+    <div class="cta-inline mt-4 text-center">
+      <p>Want to leave a review? <a href="https://g.page/r/GOOGLE_REVIEW_LINK/review" target="_blank" rel="noopener">Leave us a Google review →</a></p>
+    </div>
+  </div>
+</section>
+<section class="cta-banner">
+  <div class="container">
+    <h2>Join Our Happy Customers</h2>
+    <div class="cta-actions">
+      <a href="/request-service.html" class="btn btn-secondary btn-lg">Get Free Estimate</a>
+      <a href="tel:{PHONE_RAW}" class="btn btn-outline-white btn-lg">Call {PHONE}</a>
+    </div>
+  </div>
+</section>
+{footer()}
+</body></html>"""
+    write("reviews/index.html", content)
+
+
+# ─────────────────────────────────────────────────────────
+# PAGE: Request Service
+# ─────────────────────────────────────────────────────────
+
+def make_request_service():
+    bc, bc_schema = breadcrumbs([("Home", "/"), ("Request Service", None)])
+    content = f"""{head(
+        f"Request a Free Estimate | {NAME} | {PHONE}",
+        f"Request a free landscaping estimate from {NAME} in {B['city']}, NY. We serve all of Long Island and respond within 1 business hour.",
+        "/request-service.html",
+        bc_schema
+    )}
+{nav()}
+{bc}
+<section class="page-hero">
+  <div class="container">
+    <h1>Request a Free Estimate</h1>
+    <p>Fill out the form and we'll get back to you within 1 business hour. No pressure, no obligation.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="content-sidebar-layout">
+      <div class="content-main">
+        <h2>Let's Talk About Your Project</h2>
+        <p>Whether it's a quick lawn mowing quote or a full landscape renovation, we're here to help. Tell us about your project and we'll provide a free, transparent estimate.</p>
+        <div class="features-grid" style="margin-top:2rem">
+          <div class="feature-card"><div class="feature-icon">📞</div><h3>Call or Text</h3><p><a href="tel:{PHONE_RAW}">{PHONE}</a><br/>Available 24/7</p></div>
+          <div class="feature-card"><div class="feature-icon">📍</div><h3>Our Location</h3><p>{ADDRESS}</p></div>
+          <div class="feature-card"><div class="feature-icon">⏱️</div><h3>Response Time</h3><p>Within 1 business hour</p></div>
+        </div>
+        <div style="margin-top:2rem;border-radius:8px;overflow:hidden">
+          <iframe src="{B['googleMapsEmbed']}" width="100%" height="300" style="border:0;display:block" allowfullscreen loading="lazy" title="{NAME} Location Map"></iframe>
+        </div>
+      </div>
+      <aside class="content-sidebar">
+        {booking_form()}
+      </aside>
+    </div>
+  </div>
+</section>
+{footer()}
+</body></html>"""
+    write("request-service.html", content)
+
+
+# ─────────────────────────────────────────────────────────
+# PAGE: Thank You
+# ─────────────────────────────────────────────────────────
+
+def make_thank_you():
+    content = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Request Received | {NAME}</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/main.css" />
+</head>
+<body>
+<header class="site-header">
+  <nav class="main-nav"><div class="container nav-inner">
+    <a href="/" class="nav-logo"><img src="/images/logo.png" alt="{NAME}" height="48" /></a>
+    <a href="tel:{PHONE_RAW}" class="nav-phone">{PHONE}</a>
+  </div></nav>
+</header>
+<main style="min-height:70vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem">
+  <div style="max-width:480px">
+    <div style="font-size:4rem;margin-bottom:1rem">✅</div>
+    <h1>We Got Your Request!</h1>
+    <p style="margin:1rem 0 2rem">Thanks for reaching out to {NAME}. A team member will contact you within <strong>1 business hour</strong>.</p>
+    <a href="tel:{PHONE_RAW}" class="btn btn-primary btn-lg">📞 {PHONE}</a>
+    <br/><a href="/" style="color:var(--text-light);font-size:0.9rem;margin-top:1.5rem;display:inline-block">← Back to Home</a>
+  </div>
+</main>
+</body></html>"""
+    write("thank-you.html", content)
+
+
+# ─────────────────────────────────────────────────────────
+# PAGE: Privacy Policy & Terms (boilerplate)
+# ─────────────────────────────────────────────────────────
+
+def make_legal():
+    for slug, title, body in [
+        ("privacy-policy", "Privacy Policy", f"<p>{NAME} respects your privacy. We collect contact information submitted through our forms solely to respond to your service inquiry. We do not sell or share your information with third parties. For questions, call {PHONE}.</p>"),
+        ("terms", "Terms of Use", f"<p>By using this website, you agree to these terms of use. All content on this site is owned by {NAME}. Unauthorized reproduction is prohibited. For questions, contact us at {PHONE}.</p>"),
+        ("accessibility", "Accessibility", f"<p>{NAME} is committed to ensuring this website is accessible to people with disabilities. If you experience any difficulty, please call us at {PHONE} and we will assist you.</p>"),
+    ]:
+        bc, bc_schema = breadcrumbs([("Home", "/"), (title, None)])
+        content = f"""{head(f"{title} | {NAME}", f"{title} for {NAME}, {B['city']}, NY.", f"/{slug}.html", bc_schema)}
+{nav()}{bc}
+<section class="page-hero"><div class="container"><h1>{title}</h1></div></section>
+<section class="section"><div class="container" style="max-width:800px">{body}</div></section>
+{footer()}</body></html>"""
+        write(f"{slug}.html", content)
+
+
+# ─────────────────────────────────────────────────────────
+# RUN ALL GENERATORS
+# ─────────────────────────────────────────────────────────
+
+print("Generating Green Empire Landscaping site...\n")
+
+make_homepage()
+make_services_hub()
+for s in SERVICES:
+    make_service_page(s)
+make_areas_hub()
+for a in AREAS:
+    make_city_page(a)
+make_about()
+make_faq()
+make_reviews()
+make_request_service()
+make_thank_you()
+make_legal()
+
+print(f"✅ {len(pages_created)} pages generated:\n")
+for p in sorted(pages_created):
+    print(f"   {p}")
+
+if pages_failed:
+    print(f"\n❌ {len(pages_failed)} failed:")
+    for p in pages_failed:
+        print(f"   {p}")
+
+print(f"\nTotal: {len(pages_created)} pages")

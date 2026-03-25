@@ -1,0 +1,249 @@
+{
+  "brand": {
+    "name": "Green Empire Landscaping",
+    "tagline": "Long Island's Premier Landscaping & Lawn Care",
+    "phone": "(516) 701-3571",
+    "phoneRaw": "5167013571",
+    "email": "info@greenempirelandscaping.com",
+    "address": "64 Hilton Ave",
+    "city": "Hempstead",
+    "state": "NY",
+    "zip": "11550",
+    "hours": "Open 24/7",
+    "domain": "www.greenempirelandscaping.com",
+    "formspreeId": "YOURCODE",
+    "facebook": "https://www.facebook.com/GreenEmpireLawn/",
+    "instagram": "https://www.instagram.com/greenempireconstruction/",
+    "googleMapsEmbed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.1!2d-73.6212!3d40.7065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c27d0a6b1a2c3d%3A0x4d3e5f6a7b8c9d0e!2s64%20Hilton%20Ave%2C%20Hempstead%2C%20NY%2011550!5e0!3m2!1sen!2sus!4v1710000000000",
+    "primaryColor": "#1e4d2b",
+    "primaryDark": "#153820",
+    "secondaryColor": "#6aad32",
+    "secondaryDark": "#5a9e2f",
+    "industry": "Landscaping",
+    "industryLower": "landscaping"
+  },
+  "services": [
+    {
+      "slug": "lawn-mowing",
+      "name": "Lawn Mowing & Maintenance",
+      "shortName": "Lawn Mowing",
+      "icon": "🌿",
+      "description": "Regular mowing, edging, trimming, and blowing to keep your lawn looking sharp year-round. Flexible weekly and bi-weekly schedules available.",
+      "heroText": "Keep your lawn looking its best all season long with Green Empire's professional mowing and maintenance service. We serve Hempstead and all of Nassau & Suffolk Counties.",
+      "bullets": [
+        "Weekly and bi-weekly mowing schedules",
+        "Edging, trimming, and debris blowing",
+        "Consistent crew assigned to your property",
+        "Flexible scheduling — we work around you",
+        "Free estimates for new customers"
+      ]
+    },
+    {
+      "slug": "landscape-design",
+      "name": "Landscape Design & Installation",
+      "shortName": "Landscape Design",
+      "icon": "🏡",
+      "description": "Custom landscape designs that transform your outdoor space from concept to completion — plants, trees, shrubs, garden beds, and more.",
+      "heroText": "Turn your outdoor space into something extraordinary. Green Empire's landscape design team creates custom plans for Long Island homes and businesses.",
+      "bullets": [
+        "Custom design consultations",
+        "Full planting installations",
+        "Garden bed design and installation",
+        "Seasonal display installations",
+        "Before-and-after photos provided"
+      ]
+    },
+    {
+      "slug": "hardscape-patios",
+      "name": "Hardscape & Patios",
+      "shortName": "Hardscape & Patios",
+      "icon": "🪨",
+      "description": "Patios, walkways, driveways, retaining walls, fire pits, and outdoor living spaces built with premium materials and expert craftsmanship.",
+      "heroText": "Add real value to your property with a professionally built patio or hardscape. Green Empire handles everything from design to the final finishing touches.",
+      "bullets": [
+        "Paver patios and walkways",
+        "Retaining walls and raised beds",
+        "Driveways and parking areas",
+        "Outdoor fire pits and seating walls",
+        "Free on-site estimates"
+      ]
+    },
+    {
+      "slug": "tree-shrub-care",
+      "name": "Tree & Shrub Care",
+      "shortName": "Tree & Shrub Care",
+      "icon": "🌳",
+      "description": "Expert pruning, shaping, fertilization, and health treatments to keep your trees and shrubs looking great and staying healthy.",
+      "heroText": "Healthy trees and shrubs make the whole property look better. Green Empire's tree and shrub care service covers Long Island residential and commercial properties.",
+      "bullets": [
+        "Pruning and shaping",
+        "Fertilization treatments",
+        "Disease and pest treatments",
+        "Tree and shrub removal",
+        "Storm damage cleanup"
+      ]
+    },
+    {
+      "slug": "seasonal-cleanup",
+      "name": "Seasonal Cleanup",
+      "shortName": "Seasonal Cleanup",
+      "icon": "🍂",
+      "description": "Spring and fall cleanups including leaf removal, bed cleanup, debris removal, and full yard preparation for every season.",
+      "heroText": "Get your yard ready for the season with Green Empire's thorough spring and fall cleanup service. Serving all of Long Island.",
+      "bullets": [
+        "Leaf removal and hauling",
+        "Garden bed cleanup and prep",
+        "Debris and branch removal",
+        "Spring lawn dethatching",
+        "Fall winterization prep"
+      ]
+    },
+    {
+      "slug": "fertilization-weed-control",
+      "name": "Fertilization & Weed Control",
+      "shortName": "Fertilization",
+      "icon": "🌱",
+      "description": "Custom fertilization programs and targeted weed control for a thick, healthy, weed-free lawn that stands out in the neighborhood.",
+      "heroText": "A great lawn starts with the right nutrition. Green Empire's fertilization and weed control programs are tailored for Long Island's soil and climate.",
+      "bullets": [
+        "Custom fertilization schedules",
+        "Pre and post-emergent weed control",
+        "Soil testing available",
+        "Organic options available",
+        "Year-round programs"
+      ]
+    },
+    {
+      "slug": "mulch-installation",
+      "name": "Mulch Installation",
+      "shortName": "Mulch Installation",
+      "icon": "🌾",
+      "description": "Fresh mulch delivery and professional installation for beds and borders — improves curb appeal and promotes plant health.",
+      "heroText": "Fresh mulch makes a huge difference in how your property looks. Green Empire delivers and installs premium mulch throughout Long Island.",
+      "bullets": [
+        "Multiple mulch types available",
+        "Bulk delivery and installation",
+        "Bed edging included",
+        "Old mulch removal available",
+        "Same-day service available"
+      ]
+    },
+    {
+      "slug": "sod-installation",
+      "name": "Sod Installation",
+      "shortName": "Sod Installation",
+      "icon": "🌿",
+      "description": "Instant lawn transformation with professionally installed sod — get a lush, green, established lawn in a single day.",
+      "heroText": "Skip the wait with professionally installed sod. Green Empire transforms bare or damaged lawns into beautiful green spaces across Long Island.",
+      "bullets": [
+        "Soil preparation included",
+        "Premium sod varieties",
+        "Same-day installation available",
+        "Post-installation care guidance",
+        "Guaranteed to establish"
+      ]
+    },
+    {
+      "slug": "snow-removal",
+      "name": "Snow Removal",
+      "shortName": "Snow Removal",
+      "icon": "❄️",
+      "description": "24/7 snow plowing, shoveling, salting, and ice management for residential and commercial properties across Long Island.",
+      "heroText": "Don't get caught in a storm. Green Empire's 24/7 snow removal service keeps your property safe and accessible all winter — residential and commercial.",
+      "bullets": [
+        "24/7 availability — storm or not",
+        "Plowing, shoveling, and salting",
+        "Seasonal contracts available",
+        "Residential and commercial",
+        "Ice melt application"
+      ]
+    },
+    {
+      "slug": "commercial-landscaping",
+      "name": "Commercial Landscaping",
+      "shortName": "Commercial",
+      "icon": "🏢",
+      "description": "Professional grounds maintenance for HOAs, office parks, retail centers, and commercial properties throughout Nassau and Suffolk Counties.",
+      "heroText": "Make the right first impression. Green Empire provides reliable, professional landscaping for commercial properties across Long Island.",
+      "bullets": [
+        "HOAs and condo complexes",
+        "Office parks and corporate campuses",
+        "Retail and shopping centers",
+        "Custom maintenance contracts",
+        "Dedicated account manager"
+      ]
+    }
+  ],
+  "serviceAreas": [
+    { "slug": "hempstead", "name": "Hempstead", "county": "Nassau", "nearbyAreas": ["Garden City", "West Hempstead", "Uniondale", "Levittown"] },
+    { "slug": "garden-city", "name": "Garden City", "county": "Nassau", "nearbyAreas": ["Hempstead", "Mineola", "East Garden City", "Uniondale"] },
+    { "slug": "great-neck", "name": "Great Neck", "county": "Nassau", "nearbyAreas": ["Manhasset", "Port Washington", "Roslyn", "New Hyde Park"] },
+    { "slug": "hicksville", "name": "Hicksville", "county": "Nassau", "nearbyAreas": ["Syosset", "Plainview", "Levittown", "Bethpage"] },
+    { "slug": "levittown", "name": "Levittown", "county": "Nassau", "nearbyAreas": ["Hicksville", "Wantagh", "East Meadow", "Bethpage"] },
+    { "slug": "massapequa", "name": "Massapequa", "county": "Nassau", "nearbyAreas": ["Amityville", "Seaford", "Wantagh", "Farmingdale"] },
+    { "slug": "valley-stream", "name": "Valley Stream", "county": "Nassau", "nearbyAreas": ["Hempstead", "Elmont", "Lynbrook", "Hewlett"] },
+    { "slug": "freeport", "name": "Freeport", "county": "Nassau", "nearbyAreas": ["Merrick", "Baldwin", "Rockville Centre", "Bellmore"] },
+    { "slug": "west-hempstead", "name": "West Hempstead", "county": "Nassau", "nearbyAreas": ["Hempstead", "Lynbrook", "Malverne", "Valley Stream"] },
+    { "slug": "rockville-centre", "name": "Rockville Centre", "county": "Nassau", "nearbyAreas": ["Lynbrook", "Baldwin", "Freeport", "Oceanside"] },
+    { "slug": "huntington", "name": "Huntington", "county": "Suffolk", "nearbyAreas": ["Melville", "Cold Spring Harbor", "Dix Hills", "Commack"] },
+    { "slug": "babylon", "name": "Babylon", "county": "Suffolk", "nearbyAreas": ["Amityville", "Lindenhurst", "West Babylon", "Bay Shore"] },
+    { "slug": "bay-shore", "name": "Bay Shore", "county": "Suffolk", "nearbyAreas": ["Islip", "Brentwood", "West Islip", "Brightwaters"] },
+    { "slug": "islip", "name": "Islip", "county": "Suffolk", "nearbyAreas": ["Bay Shore", "East Islip", "West Islip", "Great River"] },
+    { "slug": "commack", "name": "Commack", "county": "Suffolk", "nearbyAreas": ["Smithtown", "Hauppauge", "Huntington", "Dix Hills"] },
+    { "slug": "smithtown", "name": "Smithtown", "county": "Suffolk", "nearbyAreas": ["Hauppauge", "St. James", "Kings Park", "Commack"] },
+    { "slug": "patchogue", "name": "Patchogue", "county": "Suffolk", "nearbyAreas": ["Medford", "Bellport", "Bayport", "Blue Point"] },
+    { "slug": "brentwood", "name": "Brentwood", "county": "Suffolk", "nearbyAreas": ["Bay Shore", "Central Islip", "Islip", "North Bay Shore"] },
+    { "slug": "central-islip", "name": "Central Islip", "county": "Suffolk", "nearbyAreas": ["Brentwood", "Bay Shore", "Islip", "Hauppauge"] },
+    { "slug": "uniondale", "name": "Uniondale", "county": "Nassau", "nearbyAreas": ["Hempstead", "Garden City", "East Meadow", "Westbury"] }
+  ],
+  "reviews": [
+    {
+      "name": "Michael T.",
+      "location": "Hempstead, NY",
+      "text": "Green Empire completely transformed our backyard. They installed a beautiful patio and redesigned our garden beds. The crew was professional, on time, and cleaned everything up. Best landscapers on Long Island by far.",
+      "rating": 5
+    },
+    {
+      "name": "Sandra K.",
+      "location": "Garden City, NY",
+      "text": "I've been using Green Empire for my lawn care for two seasons and couldn't be happier. They show up every week like clockwork and my lawn has never looked better. Also did an amazing spring cleanup.",
+      "rating": 5
+    },
+    {
+      "name": "Robert A.",
+      "location": "Uniondale, NY",
+      "text": "Green Empire handled the landscaping for our commercial property and the results were outstanding. Professional, responsive, and the whole team took pride in their work. Will definitely use them again.",
+      "rating": 5
+    }
+  ],
+  "faqs": [
+    {
+      "q": "What areas of Long Island do you serve?",
+      "a": "We serve all of Nassau and Suffolk Counties, including Hempstead, Garden City, Great Neck, Hicksville, Levittown, Massapequa, Huntington, Babylon, Islip, Smithtown, and 15+ more cities. Not sure if we cover your area? Give us a call at (516) 701-3571."
+    },
+    {
+      "q": "How do I get a free estimate?",
+      "a": "You can call or text us at (516) 701-3571 anytime — we're open 24/7. Or fill out the form on our website and we'll get back to you within 1 business hour."
+    },
+    {
+      "q": "Are you licensed and insured?",
+      "a": "Yes. Green Empire Landscaping is fully licensed and insured in New York State. We carry full liability insurance and workers' compensation on every job."
+    },
+    {
+      "q": "Do you offer commercial landscaping services?",
+      "a": "Yes. We serve HOAs, office parks, retail centers, and commercial properties throughout Nassau and Suffolk Counties. Contact us for a commercial quote."
+    },
+    {
+      "q": "How often should I get my lawn mowed?",
+      "a": "For most Long Island lawns, weekly mowing is ideal during the growing season (April–October) and bi-weekly in the cooler months. We'll recommend the best schedule for your lawn type."
+    },
+    {
+      "q": "Do you offer snow removal?",
+      "a": "Yes — we offer 24/7 snow plowing, shoveling, and salting for residential and commercial properties. Seasonal contracts are available. Call us before the season to lock in your spot."
+    },
+    {
+      "q": "What's the best time to schedule a landscape design project?",
+      "a": "Spring and fall are our most popular seasons for design and installation projects. We recommend scheduling at least 2–4 weeks in advance, though we do accommodate last-minute requests when possible."
+    }
+  ]
+}
