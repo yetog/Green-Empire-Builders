@@ -245,5 +245,43 @@
       "q": "What's the best time to schedule a landscape design project?",
       "a": "Spring and fall are our most popular seasons for design and installation projects. We recommend scheduling at least 2–4 weeks in advance, though we do accommodate last-minute requests when possible."
     }
+  ],
+  "gallery": [
+    {
+      "src": "",
+      "alt": "Lawn mowing and maintenance project on Long Island",
+      "label": "Lawn Maintenance",
+      "icon": "🌿"
+    },
+    {
+      "src": "",
+      "alt": "Landscape design and installation project",
+      "label": "Landscape Design",
+      "icon": "🏡"
+    },
+    {
+      "src": "",
+      "alt": "Hardscape patio installation",
+      "label": "Hardscape & Patios",
+      "icon": "🪨"
+    },
+    {
+      "src": "",
+      "alt": "Tree and shrub care service",
+      "label": "Tree & Shrub Care",
+      "icon": "🌳"
+    },
+    {
+      "src": "",
+      "alt": "Seasonal cleanup and mulch installation",
+      "label": "Seasonal Cleanup",
+      "icon": "🍂"
+    },
+    {
+      "src": "",
+      "alt": "Commercial landscaping project",
+      "label": "Commercial Work",
+      "icon": "🏢"
+    }
   ]
 }

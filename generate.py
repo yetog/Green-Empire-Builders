@@ -8,7 +8,7 @@ Generates all pages from site.config.json + templates
 import json, os, re, shutil
 
 # ── Load config ───────────────────────────────────────────
-with open("site.config.json") as f:
+with open("site.config.json", encoding="utf-8") as f:
     cfg = json.load(f)
 
 B = cfg["brand"]
@@ -16,6 +16,7 @@ SERVICES = cfg["services"]
 AREAS = cfg["serviceAreas"]
 REVIEWS = cfg["reviews"]
 FAQS = cfg["faqs"]
+GALLERY = cfg.get("gallery", [])
 
 PHONE = B["phone"]
 PHONE_RAW = B["phoneRaw"]
@@ -36,7 +37,7 @@ def write(path, content):
     d = os.path.dirname(path)
     if d:
         mkdir(d)
-    with open(path, "w") as f:
+    with open(path, "w", encoding="utf-8") as f:
         f.write(content)
     pages_created.append(path.replace(os.getcwd() + "/", ""))
 
@@ -203,6 +204,7 @@ def booking_form(compact=False):
     <div class="form-group"><label>Details</label><textarea name="message" rows="3" placeholder="Tell us about your project..."></textarea></div>
     <input type="text" name="_gotcha" style="display:none" />
     <input type="hidden" name="_next" value="/thank-you.html" />
+    <div class="form-check"><label class="form-check-label"><input type="checkbox" name="sms_opt_in" value="yes" class="form-check-input" /> Text me updates about my estimate</label></div>
     <button type="submit" class="btn btn-primary btn-block">Send Request →</button>
   </form>
 </div>"""
@@ -229,6 +231,7 @@ def booking_form(compact=False):
     <input type="text" name="_gotcha" style="display:none" />
     <input type="hidden" name="_subject" value="New Estimate Request — {NAME}" />
     <input type="hidden" name="_next" value="/thank-you.html" />
+    <div class="form-check"><label class="form-check-label"><input type="checkbox" name="sms_opt_in" value="yes" class="form-check-input" /> Text me updates about my estimate</label></div>
     <button type="submit" class="btn btn-primary btn-block">Send My Request →</button>
     <p class="form-disclaimer">We respect your privacy. No spam, ever.</p>
   </form>
@@ -285,19 +288,71 @@ LOCAL_BIZ_SCHEMA = f"""<script type="application/ld+json">
   </script>"""
 
 # ─────────────────────────────────────────────────────────
+# HELPER: Service card header (photo or emoji icon)
+# ─────────────────────────────────────────────────────────
+
+def service_card_header(s):
+    if s.get("image"):
+        return f'<img class="service-card-img" src="{s["image"]}" alt="{s["name"]}" loading="lazy" />'
+    return f'<div class="service-card-icon">{s["icon"]}</div>'
+
+
+# ─────────────────────────────────────────────────────────
+# HELPER: Gallery section (Our Work)
+# ─────────────────────────────────────────────────────────
+
+def gallery_section():
+    if not GALLERY:
+        return ""
+    items = []
+    for item in GALLERY:
+        if item.get("src"):
+            items.append(f"""      <figure class="gallery-item">
+        <img src="{item['src']}" alt="{item['alt']}" loading="lazy" />
+        <figcaption>{item['label']}</figcaption>
+      </figure>""")
+        else:
+            items.append(f"""      <div class="gallery-item gallery-placeholder-slot">
+        <span class="gallery-slot-icon">{item.get('icon','📷')}</span>
+        <span class="gallery-slot-label">{item['label']}</span>
+      </div>""")
+    items_html = "\n".join(items)
+    return f"""
+<!-- OUR WORK -->
+<section class="section" id="our-work">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Our Work</span>
+      <h2>Recent Projects on Long Island</h2>
+      <p>See the quality of our craftsmanship across Nassau &amp; Suffolk Counties — from weekly lawn care to full outdoor transformations.</p>
+    </div>
+    <div class="gallery-grid">
+{items_html}
+    </div>
+    <div class="text-center mt-4">
+      <a href="/request-service.html" class="btn btn-primary">Start Your Project</a>
+    </div>
+  </div>
+</section>"""
+
+
+# ─────────────────────────────────────────────────────────
 # PAGE: Homepage
 # ─────────────────────────────────────────────────────────
 
 def make_homepage():
-    service_cards = "\n".join(f"""
+    service_cards_list = []
+    for s in SERVICES:
+        service_cards_list.append(f"""
     <div class="service-card">
-      <div class="service-card-icon">{s['icon']}</div>
+      {service_card_header(s)}
       <div class="service-card-body">
         <h3>{s['name']}</h3>
         <p>{s['description']}</p>
         <a href="/services/{s['slug']}/" class="card-link">Learn More →</a>
       </div>
-    </div>""" for s in SERVICES)
+    </div>""")
+    service_cards = "\n".join(service_cards_list)
 
     faq_items = "\n".join(f"""
     <div class="faq-item">
@@ -379,6 +434,21 @@ def make_homepage():
   </div>
 </section>
 
+<!-- HOW WE HELP -->
+<section class="section how-we-help">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Our Approach</span>
+      <h2>How Green Empire Can Help You</h2>
+    </div>
+    <div class="how-we-help-content">
+      <p>Green Empire Landscaping is a full-service grounds care company. Our established systems allow us to deliver industry-leading lawn care and landscape solutions to commercial and residential clients across Long Island. Built on a commitment to excellence, we are driven by a passion to exceed customer expectations and consistently deliver results you'll be proud of.</p>
+      <p>All of our services are locally owned and operated out of Hempstead, NY. We may offer fewer or more services depending on your area — contact us for details or a customized on-site assessment. There's no obligation and no pressure.</p>
+      <a href="/request-service.html" class="btn btn-primary">Get a Free Consultation</a>
+    </div>
+  </div>
+</section>
+
 <!-- WHY US -->
 <section class="split-section">
   <div class="split-img">
@@ -398,6 +468,7 @@ def make_homepage():
     <a href="/about/" class="btn btn-primary">Meet Our Team</a>
   </div>
 </section>
+{gallery_section()}
 
 <!-- REVIEWS -->
 <section class="section section-light" id="reviews">
@@ -441,6 +512,38 @@ def make_homepage():
     </div>
     <div class="text-center mt-4">
       <a href="/faq/" class="btn btn-outline">See All FAQs</a>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG RESOURCES -->
+<!-- TODO: create /blog/ pages and update these links when ready -->
+<section class="section blog-resources">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Learn More</span>
+      <h2>Helpful Resources</h2>
+      <p>Expert tips and guides for your Long Island property</p>
+    </div>
+    <div class="blog-grid">
+      <article class="blog-card">
+        <h3>What Landscaping Zone Are You in and Why Does It Matter?</h3>
+        <p>Before you give up on your garden, learn about hardiness zones and how to choose plants that thrive in your specific Long Island climate — and what our team recommends for Nassau &amp; Suffolk.</p>
+        <a href="/blog/landscaping-zones/" class="read-more">Read More →</a>
+      </article>
+      <article class="blog-card">
+        <h3>Outdoor Landscaping Ideas for Every Budget</h3>
+        <p>Make the most of your backyard with creative landscaping ideas from our experienced Long Island team — options to suit every lifestyle and budget, from simple lawn care to full transformations.</p>
+        <a href="/blog/outdoor-landscaping-ideas/" class="read-more">Read More →</a>
+      </article>
+      <article class="blog-card">
+        <h3>Why You Should Schedule a Spring Tune-up for Your Lawn</h3>
+        <p>If you've neglected your spring lawn maintenance, it may be time to bring in some help. Learn why a professional spring tune-up is essential for Long Island lawns and what it includes.</p>
+        <a href="/blog/spring-lawn-tuneup/" class="read-more">Read More →</a>
+      </article>
+    </div>
+    <div class="text-center mt-4">
+      <a href="/blog/" class="btn btn-outline">View All Articles</a>
     </div>
   </div>
 </section>
@@ -558,15 +661,18 @@ def make_service_page(s):
 # ─────────────────────────────────────────────────────────
 
 def make_services_hub():
-    cards = "\n".join(f"""
+    cards_list = []
+    for s in SERVICES:
+        cards_list.append(f"""
     <div class="service-card">
-      <div class="service-card-icon">{s['icon']}</div>
+      {service_card_header(s)}
       <div class="service-card-body">
         <h3><a href="/services/{s['slug']}/">{s['name']}</a></h3>
         <p>{s['description']}</p>
         <a href="/services/{s['slug']}/" class="card-link">Learn More →</a>
       </div>
-    </div>""" for s in SERVICES)
+    </div>""")
+    cards = "\n".join(cards_list)
 
     bc, bc_schema = breadcrumbs([("Home", "/"), ("Services", None)])
     content = f"""{head(
@@ -1039,12 +1145,12 @@ make_request_service()
 make_thank_you()
 make_legal()
 
-print(f"✅ {len(pages_created)} pages generated:\n")
+print(f"[OK] {len(pages_created)} pages generated:\n")
 for p in sorted(pages_created):
     print(f"   {p}")
 
 if pages_failed:
-    print(f"\n❌ {len(pages_failed)} failed:")
+    print(f"\n[FAIL] {len(pages_failed)} failed:")
     for p in pages_failed:
         print(f"   {p}")
 
