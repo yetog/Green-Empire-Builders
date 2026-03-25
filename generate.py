@@ -317,7 +317,7 @@ def make_homepage():
 <section class="hero">
   <img class="hero-bg" src="/images/hero-bg.jpg" alt="Beautiful Long Island backyard landscaped by {NAME}" />
   <div class="hero-overlay"></div>
-  <div class="container hero-inner">
+  <div class="container">
     <div class="hero-content">
       <span class="hero-badge">Hempstead, NY · Nassau &amp; Suffolk Counties</span>
       <h1>{B['tagline']}</h1>
@@ -332,9 +332,6 @@ def make_homepage():
         <span>🕐 Open 24/7</span>
       </div>
     </div>
-    <div class="hero-form">
-      {booking_form(compact=True)}
-    </div>
   </div>
 </section>
 
@@ -347,6 +344,26 @@ def make_homepage():
     <div class="stat"><span class="stat-n">100%</span><span class="stat-l">Satisfaction Guaranteed</span></div>
   </div>
 </div>
+
+<!-- BOOKING -->
+<section class="booking-section">
+  <div class="container booking-wrap">
+    <div class="booking-info">
+      <span class="eyebrow">Free Estimates</span>
+      <h2>Get a Quote Today</h2>
+      <p>We respond within 1 business hour. No pressure, no obligation — just honest pricing from Long Island's trusted landscaping team.</p>
+      <ul>
+        <li><span class="icon">📞</span><div><strong>Call anytime:</strong> <a href="tel:{PHONE_RAW}">{PHONE}</a> — we're open 24/7.</div></li>
+        <li><span class="icon">📍</span><div><strong>Based in Hempstead, NY</strong> — serving Nassau &amp; Suffolk Counties.</div></li>
+        <li><span class="icon">🛡️</span><div><strong>Licensed &amp; Insured</strong> in New York State.</div></li>
+        <li><span class="icon">⭐</span><div><strong>5-star rated</strong> by 500+ Long Island homeowners.</div></li>
+      </ul>
+    </div>
+    <div class="booking-form-col">
+      {booking_form(compact=True)}
+    </div>
+  </div>
+</section>
 
 <!-- SERVICES -->
 <section class="section" id="services">
