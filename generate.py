@@ -475,7 +475,7 @@ def make_homepage():
 <!-- WHY US -->
 <section class="split-section">
   <div class="split-img">
-    <img src="/images/hero-bg.jpg" alt="Green Empire Landscaping team working on a Long Island property" />
+    <img src="/images/Gemini_Generated_Image_pdxum4pdxum4pdxu.png" alt="Green Empire Landscaping completed project on Long Island" />
   </div>
   <div class="split-content">
     <span class="eyebrow">Why Green Empire</span>

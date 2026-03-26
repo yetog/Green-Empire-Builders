@@ -28,6 +28,7 @@
       "name": "Back Yard Landscaping",
       "shortName": "Back Yard",
       "icon": "🌿",
+      "image": "/images/Gemini_Generated_Image_pdxum4pdxum4pdxu.png",
       "description": "Transform your back yard into a private outdoor retreat. Custom plantings, garden beds, grading, and complete landscape renovations tailored to your home and lifestyle.",
       "heroText": "Your back yard should be a space you actually want to spend time in. Green Empire designs and installs custom back yard landscapes for Long Island homeowners — built to look stunning and last for years.",
       "bullets": [
@@ -43,6 +44,7 @@
       "name": "Front Yard Landscaping",
       "shortName": "Front Yard",
       "icon": "🏡",
+      "image": "/images/Gemini_Generated_Image_h76cc0h76cc0h76c.png",
       "description": "Elevate your home's curb appeal with a professionally designed front yard. First impressions that reflect the quality of your property and your standards.",
       "heroText": "Curb appeal is the first thing anyone notices. Green Empire creates polished, well-designed front yard landscapes that make Long Island homes stand out on the block.",
       "bullets": [
@@ -58,6 +60,7 @@
       "name": "Paver Installation",
       "shortName": "Pavers",
       "icon": "🧱",
+      "image": "/images/Gemini_Generated_Image_h76cc0h76cc0h76c.png",
       "description": "Premium paver systems for walkways, patios, pool decks, and outdoor floors. Precision installation using quality materials built for Long Island's climate.",
       "heroText": "Pavers done right — from design to final seal. Green Empire installs premium paver systems across Long Island with craftsmanship and materials that stand the test of time.",
       "bullets": [
@@ -73,6 +76,7 @@
       "name": "Driveway Installation",
       "shortName": "Driveways",
       "icon": "🛤️",
+      "image": "/images/Gemini_Generated_Image_h76cc0h76cc0h76c.png",
       "description": "Custom driveway design and installation that balances function with curb appeal. Paver, asphalt, or gravel — designed to complement your home's architecture.",
       "heroText": "Your driveway sets the tone before anyone reaches your front door. Green Empire installs custom driveways that blend seamlessly with your landscape and elevate your property's value.",
       "bullets": [
@@ -88,6 +92,7 @@
       "name": "Patio Installation",
       "shortName": "Patios",
       "icon": "☀️",
+      "image": "/images/Gemini_Generated_Image_c5v110c5v110c5v1.png",
       "description": "Custom patio design and installation that extends your living space outdoors. From intimate seating areas to large entertaining spaces — crafted to complement your home.",
       "heroText": "A well-designed patio changes how you experience your property. Green Empire creates custom patios for Long Island homeowners who want beauty, functionality, and durability in equal measure.",
       "bullets": [
@@ -103,6 +108,7 @@
       "name": "Outdoor Living Spaces",
       "shortName": "Outdoor Living",
       "icon": "🔥",
+      "image": "/images/Gemini_Generated_Image_c5v110c5v110c5v1.png",
       "description": "Complete outdoor living environments — pergolas, fire features, outdoor kitchens, and custom seating areas. Designed for the way Long Island families actually live.",
       "heroText": "Outdoor living is more than a trend — it's a lifestyle. Green Empire designs and builds complete outdoor environments that become the most-used space on your property.",
       "bullets": [
@@ -118,6 +124,7 @@
       "name": "Landscape Design & Installation",
       "shortName": "Landscape Design",
       "icon": "📐",
+      "image": "/images/Gemini_Generated_Image_7vpm8z7vpm8z7vpm.png",
       "description": "Full-service landscape design from concept to completion. A cohesive design process that transforms your property's potential into a polished, finished reality.",
       "heroText": "Great outdoor spaces start with great design. Green Empire's landscape designers develop comprehensive plans for Long Island properties — then execute every detail with precision.",
       "bullets": [
@@ -203,40 +210,40 @@
   ],
   "gallery": [
     {
-      "src": "",
-      "alt": "Back yard landscaping renovation on Long Island",
-      "label": "Back Yard Landscaping",
+      "src": "/images/Gemini_Generated_Image_7vpm8z7vpm8z7vpm.png",
+      "alt": "Full property landscape design and installation on Long Island",
+      "label": "Landscape Design & Installation",
+      "icon": "📐"
+    },
+    {
+      "src": "/images/Gemini_Generated_Image_c5v110c5v110c5v1.png",
+      "alt": "Outdoor living space with pergola, fire pit, and paver patio",
+      "label": "Outdoor Living Space",
+      "icon": "🔥"
+    },
+    {
+      "src": "/images/Gemini_Generated_Image_h76cc0h76cc0h76c.png",
+      "alt": "Paver driveway installation with front yard landscaping",
+      "label": "Paver Driveway",
+      "icon": "🛤️"
+    },
+    {
+      "src": "/images/Gemini_Generated_Image_pdxum4pdxum4pdxu.png",
+      "alt": "Back yard landscaping renovation with patio and water feature",
+      "label": "Back Yard Renovation",
       "icon": "🌿"
+    },
+    {
+      "src": "",
+      "alt": "Custom patio installation on Long Island",
+      "label": "Patio Installation",
+      "icon": "☀️"
     },
     {
       "src": "",
       "alt": "Front yard landscaping and curb appeal",
       "label": "Front Yard Landscaping",
       "icon": "🏡"
-    },
-    {
-      "src": "",
-      "alt": "Premium paver installation project",
-      "label": "Paver Installation",
-      "icon": "🧱"
-    },
-    {
-      "src": "",
-      "alt": "Custom patio installation",
-      "label": "Patio Installation",
-      "icon": "☀️"
-    },
-    {
-      "src": "",
-      "alt": "Outdoor living space with fire pit and pergola",
-      "label": "Outdoor Living Space",
-      "icon": "🔥"
-    },
-    {
-      "src": "",
-      "alt": "Custom landscape design and installation",
-      "label": "Landscape Design",
-      "icon": "📐"
     }
   ]
 }
