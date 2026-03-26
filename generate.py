@@ -64,7 +64,7 @@ def nav(active=""):
   <nav class="main-nav" aria-label="Main navigation">
     <div class="container nav-inner">
       <a href="/" class="nav-logo">
-        <img src="/images/logo.png" alt="{NAME} logo" height="52" />
+        <img src="/images/logo.png" alt="{NAME} logo" height="64" />
       </a>
       <ul class="nav-links">
         <li class="has-dropdown">
@@ -294,7 +294,7 @@ LOCAL_BIZ_SCHEMA = f"""<script type="application/ld+json">
 def service_card_header(s):
     if s.get("image"):
         return f'<img class="service-card-img" src="{s["image"]}" alt="{s["name"]}" loading="lazy" />'
-    return f'<div class="service-card-icon">{s["icon"]}</div>'
+    return f'<div class="service-card-placeholder" aria-hidden="true"></div>'
 
 
 # ─────────────────────────────────────────────────────────
@@ -604,7 +604,7 @@ def make_service_page(s):
     bc, bc_schema = breadcrumbs([("Home", "/"), ("Services", "/services/"), (s["name"], None)])
     bullets = "\n".join(f"<li>{b}</li>" for b in s["bullets"])
     other_services = "\n".join(
-        f'<a href="/services/{o["slug"]}/" class="related-link">{o["icon"]} {o["name"]}</a>'
+        f'<a href="/services/{o["slug"]}/" class="related-link">{o["name"]}</a>'
         for o in SERVICES if o["slug"] != s["slug"]
     )
     content = f"""{head(
@@ -761,7 +761,7 @@ def make_city_page(area):
   </script>"""
 
     service_list = "\n".join(
-        f'<li><a href="/services/{s["slug"]}/">{s["icon"]} {s["name"]} in {city}</a></li>'
+        f'<li><a href="/services/{s["slug"]}/">{s["name"]} in {city}</a></li>'
         for s in SERVICES
     )
 

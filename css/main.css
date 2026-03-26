@@ -186,7 +186,7 @@ h1,h2,h3,h4 { line-height: 1.2; }
   height: var(--nav-h);
   gap: 28px;
 }
-.nav-logo img { height: 52px; width: auto; }
+.nav-logo img { height: 64px; width: auto; image-rendering: -webkit-optimize-contrast; }
 .nav-links {
   display: flex;
   gap: 2px;
@@ -676,8 +676,16 @@ nav.breadcrumbs {
   box-shadow: 0 12px 32px rgba(30,77,43,.15);
   transform: translateY(-4px);
 }
+.service-card-placeholder {
+  /* Clean gradient header — shown until real photo is added */
+  width: 100%;
+  height: 180px;
+  background: linear-gradient(160deg, #1e5c30 0%, #0e2b18 100%);
+  display: block;
+  flex-shrink: 0;
+}
 .service-card-icon {
-  /* Full-width colored header block — first-draft style */
+  /* Legacy — kept for any direct uses */
   width: 100%;
   height: 180px;
   background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
