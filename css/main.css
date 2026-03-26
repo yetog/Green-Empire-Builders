@@ -1324,26 +1324,42 @@ nav.breadcrumbs {
 }
 /* Placeholder slot shown until real photos are added */
 .gallery-placeholder-slot {
-  background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+  background: linear-gradient(160deg, #1a4226 0%, #0e2b18 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  border: 2px dashed rgba(255,255,255,.25);
+  gap: 12px;
   cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+.gallery-placeholder-slot::after {
+  content: 'Project Photo Coming Soon';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,.35);
+  color: rgba(255,255,255,.55);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: .04em;
+  text-align: center;
+  padding: 6px 0;
 }
 .gallery-placeholder-slot:hover {
   transform: none;
   box-shadow: var(--shadow);
 }
-.gallery-slot-icon { font-size: 2.4rem; line-height: 1; }
+.gallery-slot-icon { font-size: 2.6rem; line-height: 1; opacity: .8; }
 .gallery-slot-label {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: rgba(255,255,255,.9);
+  font-size: 1rem;
+  font-weight: 700;
+  color: rgba(255,255,255,.95);
   text-align: center;
-  padding: 0 12px;
+  padding: 0 16px;
+  letter-spacing: -.01em;
 }
 
 /* ── Form checkbox (SMS opt-in) ──────────────────────────── */
@@ -1427,6 +1443,76 @@ nav.breadcrumbs {
   text-decoration: none;
 }
 .blog-card .read-more:hover { color: var(--green-hover); gap: 8px; }
+
+/* ── How It Works / Steps ───────────────────────────────── */
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 16px;
+}
+.step-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 36px 28px 32px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+.step-number {
+  width: 52px;
+  height: 52px;
+  background: var(--green-light);
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 800;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+.step-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--black);
+  margin-bottom: 12px;
+}
+.step-desc {
+  font-size: 0.9rem;
+  color: var(--gray-dark);
+  line-height: 1.7;
+}
+
+/* ── Thank You page ─────────────────────────────────────── */
+.ty-hero {
+  background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%);
+  padding: 80px 0 72px;
+  text-align: center;
+  color: #fff;
+}
+.ty-hero-inner { max-width: 600px; margin: 0 auto; padding: 0 20px; }
+.ty-check {
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: center;
+}
+.ty-hero h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 14px;
+}
+.ty-hero p {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,.88);
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+@media (max-width: 768px) {
+  .steps-grid { grid-template-columns: 1fr; gap: 16px; }
+}
 
 /* ── Footer ──────────────────────────────────────────────── */
 .site-footer { background: #0d2718; color: rgba(255,255,255,.65); }

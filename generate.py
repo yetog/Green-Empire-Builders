@@ -420,6 +420,37 @@ def make_homepage():
   </div>
 </section>
 
+<!-- HOW IT WORKS -->
+<section class="section section-light" id="how-it-works">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Simple Process</span>
+      <h2>How It Works</h2>
+      <p>Getting started with Green Empire is easy. Three steps from first contact to a finished outdoor space.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <h3 class="step-title">Request a Free Estimate</h3>
+        <p class="step-desc">Call, text, or fill out the form. We respond within 1 business hour and schedule your free on-site consultation at a time that works for you.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <h3 class="step-title">We Visit Your Property</h3>
+        <p class="step-desc">A Green Empire team member visits your property, walks the space with you, and develops a custom plan. You get a detailed quote before any work begins.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <h3 class="step-title">We Get to Work</h3>
+        <p class="step-desc">Once you approve the plan, our crew handles everything — from materials and grading to installation and final cleanup. Your outdoor space, transformed.</p>
+      </div>
+    </div>
+    <div class="text-center mt-4">
+      <a href="/request-service.html" class="btn btn-primary">Start With a Free Estimate</a>
+    </div>
+  </div>
+</section>
+
 <!-- SERVICES -->
 <section class="section" id="services">
   <div class="container">
@@ -1083,6 +1114,7 @@ def make_thank_you():
   <title>Request Received | {NAME}</title>
   <meta name="robots" content="noindex" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/css/main.css" />
 </head>
@@ -1093,15 +1125,59 @@ def make_thank_you():
     <a href="tel:{PHONE_RAW}" class="nav-phone">{PHONE}</a>
   </div></nav>
 </header>
-<main style="min-height:70vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:2rem">
-  <div style="max-width:480px">
-    <div style="font-size:4rem;margin-bottom:1rem">✅</div>
-    <h1>We Got Your Request!</h1>
-    <p style="margin:1rem 0 2rem">Thanks for reaching out to {NAME}. A team member will contact you within <strong>1 business hour</strong>.</p>
-    <a href="tel:{PHONE_RAW}" class="btn btn-primary btn-lg">📞 {PHONE}</a>
-    <br/><a href="/" style="color:var(--text-light);font-size:0.9rem;margin-top:1.5rem;display:inline-block">← Back to Home</a>
+
+<section class="ty-hero">
+  <div class="container ty-hero-inner">
+    <div class="ty-check">
+      <svg viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg" width="64" height="64">
+        <circle cx="26" cy="26" r="26" fill="var(--green-light)"/>
+        <path d="M15 27l8 8 14-16" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h1>Your Request Was Received</h1>
+    <p>Thanks for contacting {NAME}. A member of our team will reach out to you within <strong>1 business hour</strong>.</p>
+    <a href="tel:{PHONE_RAW}" class="btn btn-primary btn-lg">Call Us Now — {PHONE}</a>
   </div>
-</main>
+</section>
+
+<section class="section section-light">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">What Happens Next</span>
+      <h2>Here's What to Expect</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <h3 class="step-title">We'll Be in Touch</h3>
+        <p class="step-desc">Expect a call or text from our team within 1 business hour. We'll confirm your request and answer any questions you have right away.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <h3 class="step-title">Free On-Site Consultation</h3>
+        <p class="step-desc">We'll visit your property, walk the space with you, and listen to your vision. No pressure — just an honest conversation about what's possible.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <h3 class="step-title">Your Custom Quote</h3>
+        <p class="step-desc">You'll receive a detailed, transparent quote before any work begins. No surprises, no hidden fees — just clear pricing for exactly what you asked for.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container" style="text-align:center;max-width:560px;margin:0 auto">
+    <h2>While You Wait</h2>
+    <p style="color:var(--gray-mid);margin-bottom:2rem">Browse our services to get inspired, or read what Long Island homeowners are saying about us.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="/services/" class="btn btn-outline">Browse Services</a>
+      <a href="/reviews/" class="btn btn-outline">Read Reviews</a>
+    </div>
+  </div>
+</section>
+
+{footer()}
 </body></html>"""
     write("thank-you.html", content)
 
