@@ -22,7 +22,7 @@
   --r:            8px;
   --r-lg:         12px;
   --max:          1200px;
-  --nav-h:        290px;
+  --nav-h:        96px;
   --font:         'Inter', system-ui, -apple-system, sans-serif;
 }
 
@@ -192,7 +192,7 @@ h1,h2,h3,h4 { line-height: 1.2; }
   height: var(--nav-h);
   gap: 28px;
 }
-.nav-logo img { height: 280px; width: auto; display: block; }
+.nav-logo img { height: 120px; width: auto; display: block; }
 .nav-links {
   display: flex;
   gap: 2px;
