@@ -1,0 +1,337 @@
+/* ═══════════════════════════════════════════════════════════════
+   GREEN EMPIRE BUILDERS — ARCHITECTURAL EDITORIAL REDESIGN
+   Playfair Display (serif display) + DM Sans (body)
+   Concept: Premium construction firm meets architectural journal
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Design tokens ─────────────────────────────────────────── */
+:root {
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --ink:     #080C08;
+  --warm-bg: #F7F8F5;
+  --rule:    #D6DDD2;
+  --muted:   #6B7A6B;
+}
+
+/* ── Base ───────────────────────────────────────────────────── */
+body { font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.015em; }
+
+/* ── Top bar ────────────────────────────────────────────────── */
+.top-bar {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ── Navigation ─────────────────────────────────────────────── */
+.main-nav { background: #fff; box-shadow: none; border-bottom: 1px solid var(--rule); }
+.nav-links > li > a {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink);
+  position: relative;
+  padding-bottom: 2px;
+}
+.nav-links > li > a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 0; height: 1px;
+  background: var(--green);
+  transition: width 0.28s cubic-bezier(.4,0,.2,1);
+}
+.nav-links > li > a:hover::after,
+.nav-links > li > a.active::after { width: 100%; }
+.nav-phone {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-style: italic;
+  letter-spacing: 0;
+}
+
+/* ── Hero ───────────────────────────────────────────────────── */
+.hero { min-height: 100vh; }
+.hero-brand-name { display: none; }
+.hero-badge {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: rgba(255,255,255,.55);
+  border: 1px solid rgba(255,255,255,.22);
+  border-radius: 1px;
+  padding: 5px 14px;
+  margin-bottom: 28px;
+}
+.hero h1 {
+  font-size: clamp(2.6rem, 6.5vw, 5.5rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.hero-content > p {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 300;
+  line-height: 1.75;
+  color: rgba(255,255,255,.78);
+  max-width: 520px;
+  margin-bottom: 36px;
+}
+.hero-trust span {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ── Stats bar ──────────────────────────────────────────────── */
+.stats-grid { border-top: 1px solid rgba(255,255,255,.12); }
+.stat {
+  border-right: 1px solid rgba(255,255,255,.12);
+  padding: 36px 0;
+}
+.stat:last-child { border-right: none; }
+.stat-n {
+  font-family: var(--font-display);
+  font-size: 3.25rem;
+  font-weight: 800;
+  color: #fff;
+  display: block;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-l {
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: rgba(255,255,255,.5);
+}
+
+/* ── Section headers ────────────────────────────────────────── */
+.section-header h2,
+.section-header-light h2 {
+  font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+}
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+.eyebrow::before { content: '— '; opacity: .6; }
+
+/* ── Buttons ────────────────────────────────────────────────── */
+.btn {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  border-radius: 1px;
+}
+.btn-primary { transition: background 0.22s, letter-spacing 0.22s; }
+.btn-primary:hover { letter-spacing: 0.18em; }
+
+/* ── Contact cards ──────────────────────────────────────────── */
+.contact-cards-section { padding: 72px 0; }
+.contact-card {
+  border-radius: 0;
+  border: 1px solid rgba(255,255,255,.14);
+  padding: 44px 32px;
+  transition: background .22s, border-color .22s;
+}
+.contact-card:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.3); }
+.contact-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0;
+  margin-bottom: 10px;
+}
+.contact-card p { font-family: var(--font-body); font-size: 0.85rem; font-weight: 300; }
+.icon-circle {
+  border: 1px solid rgba(255,255,255,.3);
+  width: 56px; height: 56px;
+  border-radius: 0;
+  margin-bottom: 24px;
+}
+
+/* ── Difference section ─────────────────────────────────────── */
+.difference-section { background: var(--ink); }
+.eyebrow-light {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.eyebrow-light::before { content: '— '; opacity: .5; }
+.difference-grid { counter-reset: diff; }
+.difference-card {
+  border-radius: 0;
+  border: 1px solid rgba(255,255,255,.08);
+  text-align: left;
+  padding: 48px 40px 44px;
+  position: relative;
+  counter-increment: diff;
+  transition: border-color .25s, background .25s;
+  overflow: hidden;
+}
+.difference-card:hover {
+  border-color: rgba(255,255,255,.2);
+  background: rgba(255,255,255,.03);
+}
+.difference-card::before {
+  content: counter(diff, decimal-leading-zero);
+  font-family: var(--font-display);
+  font-size: 7rem;
+  font-weight: 900;
+  color: var(--green);
+  opacity: 0.12;
+  position: absolute;
+  bottom: -12px; right: 16px;
+  line-height: 1;
+  pointer-events: none;
+}
+.icon-circle-outline { display: none; }
+.difference-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 700;
+  font-style: italic;
+  text-align: left;
+  text-transform: none;
+  letter-spacing: 0;
+  color: #fff;
+  margin-bottom: 14px;
+}
+.difference-card p {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 300;
+  text-align: left;
+  color: rgba(255,255,255,.55);
+  line-height: 1.75;
+}
+
+/* ── Service cards ──────────────────────────────────────────── */
+.service-card {
+  border-radius: 0;
+  border: 1px solid var(--rule);
+  border-top: 3px solid var(--green);
+  box-shadow: none;
+  transition: transform 0.28s cubic-bezier(.4,0,.2,1), box-shadow 0.28s;
+}
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(31,77,43,.12);
+}
+.service-card-body h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.card-link {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+/* ── Reviews ────────────────────────────────────────────────── */
+.review-card {
+  border-radius: 0;
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--green);
+}
+.review-text {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+.review-author { font-family: var(--font-body); font-weight: 600; }
+
+/* ── FAQ ────────────────────────────────────────────────────── */
+.faq-question { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; }
+.faq-item { border-radius: 0; border-bottom: 1px solid var(--rule); }
+
+/* ── Consultation section ───────────────────────────────────── */
+.consultation-section { padding: 96px 0; }
+.consultation-text h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.consultation-text p { font-family: var(--font-body); font-weight: 300; font-size: 1rem; line-height: 1.8; }
+.consult-list li { font-family: var(--font-body); font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em; }
+.booking-card { border-radius: 0; }
+.booking-card-header h3 { font-family: var(--font-display); font-style: italic; }
+
+/* ── Footer ─────────────────────────────────────────────────── */
+.site-footer { background: var(--ink); border-top: 1px solid rgba(255,255,255,.06); }
+.footer-col h4 {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: rgba(255,255,255,.35);
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  padding-bottom: 12px;
+}
+.footer-brand p { font-family: var(--font-body); font-weight: 300; }
+.footer-phone {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-style: italic;
+  color: #fff;
+}
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,.06);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+}
+
+/* ── Supporting elements ────────────────────────────────────── */
+.city-pill { border-radius: 1px; font-family: var(--font-body); font-size: 0.75rem; font-weight: 500; letter-spacing: 0.06em; }
+.breadcrumbs { background: var(--warm-bg); border-bottom: 1px solid var(--rule); font-family: var(--font-body); font-size: 0.72rem; }
+.page-hero { background: var(--green-dark); }
+.page-hero h1 { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 800; text-transform: uppercase; letter-spacing: -0.01em; }
+.cta-banner { background: var(--green-dark); }
+.cta-banner h2 { font-size: clamp(1.6rem, 3.5vw, 2.5rem); font-weight: 800; text-transform: uppercase; letter-spacing: -0.01em; }
+.section-light { background: var(--warm-bg); }
+
+/* ── Mobile ─────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .hero h1 { letter-spacing: -0.01em; }
+  .difference-grid { grid-template-columns: 1fr; }
+  .contact-cards-grid { grid-template-columns: 1fr; }
+  .consultation-content { grid-template-columns: 1fr; gap: 40px; }
+  .difference-card::before { font-size: 5rem; }
+}

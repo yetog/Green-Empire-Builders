@@ -193,9 +193,10 @@ def head(title, desc, canonical, schema=""):
   {schema}
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family={FONT.replace(' ', '+')}:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="{B.get('fontUrl', 'https://fonts.googleapis.com/css2?family=' + FONT.replace(' ', '+') + ':wght@400;500;600;700;800&display=swap')}" rel="stylesheet" />
   <link rel="stylesheet" href="/css/main.css" />
   <link rel="stylesheet" href="/css/theme.css" />
+  <link rel="stylesheet" href="/css/builders-design.css" />
 </head>
 <body>"""
 
@@ -1113,9 +1114,10 @@ def make_thank_you():
   <meta name="robots" content="noindex" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family={FONT.replace(' ', '+')}:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="{B.get('fontUrl', 'https://fonts.googleapis.com/css2?family=' + FONT.replace(' ', '+') + ':wght@400;500;600;700;800&display=swap')}" rel="stylesheet" />
   <link rel="stylesheet" href="/css/main.css" />
   <link rel="stylesheet" href="/css/theme.css" />
+  <link rel="stylesheet" href="/css/builders-design.css" />
 </head>
 <body>
 <header class="site-header">
