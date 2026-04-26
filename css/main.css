@@ -1,15 +1,10 @@
 /* ============================================================
-   Green Empire Landscaping
-   Brand: #1e4d2b (dark green) | #6aad32 (lime green)
+   Site Factory Template — brand colors injected via theme.css
    ============================================================ */
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --green:        #1e4d2b;
-  --green-dark:   #153820;
-  --green-light:  #6aad32;
-  --green-hover:  #5a9e2f;
   --black:        #111827;
   --gray-dark:    #374151;
   --gray-mid:     #6b7280;

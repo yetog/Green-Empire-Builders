@@ -17,6 +17,7 @@
   {"@context":"https://schema.org","@type":"LandscapingBusiness",
     "name":"Green Empire Landscaping — Commack","url":"https://www.greenempireland.com/service-areas/commack/",
     "telephone":"(516) 774-2956","priceRange":"$$",
+    "@type":"LandscapingBusiness",
     "address":{"@type":"PostalAddress","addressLocality":"Commack","addressRegion":"NY","addressCountry":"US"},
     "areaServed":{"@type":"City","name":"Commack"}
   }
@@ -24,12 +25,21 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/css/main.css?v=3" />
-<script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/theme.css" />
 </head>
 <body>
 
 <header class="site-header">
+  <div class="top-bar">
+    <div class="container">
+      <span>Locally owned · Hempstead, NY 11550</span>
+      <div class="top-bar-right">
+        <a href="tel:5167742956">📞 (516) 774-2956</a>
+        <a href="/request-service.html" class="top-bar-cta">Free Estimate</a>
+      </div>
+    </div>
+  </div>
   <nav class="main-nav" aria-label="Main navigation">
     <div class="container nav-inner">
       <a href="/" class="nav-logo">
@@ -124,12 +134,11 @@
 <div class="booking-card">
   <div class="booking-card-header">
     <h3>Get Your Custom Quote</h3>
-    
+    <p>Response within 1 business hour</p>
   </div>
-  <form action="https://hooks.zapier.com/hooks/catch/26765756/u7mrips/" method="POST" class="booking-form">
+  <form action="https://hooks.zapier.com/hooks/catch/26765756/u7mrips/" method="POST" class="booking-form" data-phone="(516) 774-2956">
     <div class="form-group"><label>Name *</label><input type="text" name="name" required placeholder="Your full name" /></div>
     <div class="form-group"><label>Phone *</label><input type="tel" name="phone" required placeholder="(516) 774-2956" /></div>
-    <div class="form-group"><label>Address</label><input type="text" name="address" placeholder="Your property address" /></div>
     <div class="form-group"><label>Service</label>
       <select name="service"><option value="">Select a service...</option><option value="back-yard-landscaping">Back Yard Landscaping</option>
 <option value="front-yard-landscaping">Front Yard Landscaping</option>
@@ -140,13 +149,16 @@
 <option value="landscape-design-installation">Landscape Design & Installation</option></select>
     </div>
     <div class="form-group"><label>Details</label><textarea name="message" rows="3" placeholder="Tell us about your project..."></textarea></div>
+    <input type="text" name="_gotcha" style="display:none" />
+    <input type="hidden" name="_next" value="/thank-you.html" />
+    <div class="form-check"><label class="form-check-label"><input type="checkbox" name="sms_opt_in" value="yes" class="form-check-input" /> Text me updates about my estimate</label></div>
     <button type="submit" class="btn btn-primary btn-block">Send Request →</button>
   </form>
 </div>
       <div class="sidebar-contact">
         <h4>Contact Us</h4>
-        <p><i data-lucide="phone"></i> <a href="tel:5167742956">(516) 774-2956</a></p>
-        <p><i data-lucide="map-pin"></i> 64 Hilton Ave, Hempstead, NY 11550</p>
+        <p>📞 <a href="tel:5167742956">(516) 774-2956</a></p>
+        <p>📍 64 Hilton Ave, Hempstead, NY 11550</p>
         <p>🕐 Mon–Sat 7am–6pm</p>
       </div>
     </aside>
@@ -198,7 +210,7 @@
 <section class="cta-banner">
   <div class="container">
     <h2>Need Landscaping in Commack, NY?</h2>
-    <p>We're nearby and ready. Call or submit the form — quick response.</p>
+    <p>We're nearby and ready. Call or submit the form — response within 1 business hour.</p>
     <div class="cta-actions">
       <a href="/request-service.html" class="btn btn-secondary btn-lg">Get Free Estimate</a>
       <a href="tel:5167742956" class="btn btn-outline-white btn-lg">Call (516) 774-2956</a>
@@ -211,7 +223,7 @@
     <div class="container footer-grid">
       <div class="footer-brand">
         <a href="/"><img src="/images/logo.png" alt="Green Empire Landscaping" height="72" class="footer-logo" /></a>
-        <p>Green Empire Landscaping — Long Island's landscaping &amp; outdoor renovation specialists. Certified, insured, and locally based in Hempstead, NY.</p>
+        <p>Long Island's landscaping & outdoor renovation specialists. Certified, insured, and locally based.</p>
         <a href="tel:5167742956" class="footer-phone">(516) 774-2956</a>
         <p class="footer-address">64 Hilton Ave, Hempstead, NY 11550</p>
         <div class="footer-social">

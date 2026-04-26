@@ -11,7 +11,16 @@
     "zip": "11550",
     "hours": "Mon–Sat 7am–6pm",
     "domain": "www.greenempireland.com",
-    "formspreeId": "xdapbeoj",
+    "zapierWebhook": "https://hooks.zapier.com/hooks/catch/26765756/u7mrips/",
+    "font": "Inter",
+    "forms": {
+      "notifyEmail": "greenempireland@gmail.com",
+      "notifyPhone": "5163214243196"
+    },
+    "schemaType": "LandscapingBusiness",
+    "footerTagline": "Long Island's landscaping & outdoor renovation specialists. Certified, insured, and locally based.",
+    "heroSubtext": "Your outdoor space should be built to the same standard as your home — designed around your vision, not a template. Custom landscapes, patios, pavers, driveways, and outdoor living environments built to last.",
+    "servicesHeadline": "Complete Landscaping Services for Long Island",
     "facebook": "https://www.facebook.com/GreenEmpireLawn/",
     "instagram": "https://www.instagram.com/greenempireconstruction/",
     "googleMapsEmbed": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.1!2d-73.6212!3d40.7065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c27d0a6b1a2c3d%3A0x4d3e5f6a7b8c9d0e!2s64%20Hilton%20Ave%2C%20Hempstead%2C%20NY%2011550!5e0!3m2!1sen!2sus!4v1710000000000",
