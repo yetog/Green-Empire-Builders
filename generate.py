@@ -387,8 +387,8 @@ def make_homepage():
     </div>""" for f in FAQS[:5])
 
     content = f"""{head(
-        f"Landscaping Services in {B['city']}, NY | {NAME} | {PHONE}",
-        f"{NAME} provides professional landscaping &amp; outdoor renovation in {B['city']}, NY. Custom patios, pavers, driveways &amp; more. Call {PHONE} for a free estimate!",
+        f"{B['industry']} in {B['city']}, NY | {NAME} | {PHONE}",
+        f"{NAME} provides professional {B['industryLower']} in {B['city']}, NY. Call {PHONE} for a free estimate!",
         "/",
         LOCAL_BIZ_SCHEMA
     )}
@@ -718,8 +718,8 @@ def make_services_hub():
 
     bc, bc_schema = breadcrumbs([("Home", "/"), ("Services", None)])
     content = f"""{head(
-        f"Landscaping Services | {NAME} | {PHONE}",
-        f"{NAME} offers professional landscaping &amp; outdoor renovation in {B['city']}, NY. Patios, pavers, driveways, outdoor living spaces &amp; more. Call {PHONE}.",
+        f"{B['industry']} | {NAME} | {PHONE}",
+        f"{NAME} offers professional {B['industryLower']} in {B['city']}, NY. Call {PHONE} for a free estimate.",
         "/services/",
         bc_schema
     )}
@@ -778,8 +778,8 @@ def make_city_page(area):
     )
 
     content = f"""{head(
-        f"Landscaping Services in {city}, NY | {NAME} | {PHONE}",
-        f"Professional landscaping &amp; outdoor renovation in {city}, NY. {NAME} serves {city} and {county} County. Patios, pavers, driveways &amp; more. Call {PHONE}.",
+        f"{B['industry']} in {city}, NY | {NAME} | {PHONE}",
+        f"Professional {B['industryLower']} in {city}, NY. {NAME} serves {city} and {county} County. Call {PHONE} for a free estimate.",
         f"/service-areas/{slug}/",
         bc_schema + city_schema
     )}
