@@ -1576,8 +1576,119 @@ nav.breadcrumbs {
   .steps-grid { grid-template-columns: 1fr; gap: 16px; }
 }
 
+/* ── Diamond Ridge Layout — Contact Cards ──────────────── */
+.contact-cards-section {
+  background: var(--green);
+  padding: 64px 0;
+}
+.contact-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.contact-card {
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: var(--r-lg);
+  padding: 36px 28px;
+  text-align: center;
+  color: #fff;
+  transition: background .2s;
+}
+.contact-card:hover { background: rgba(255,255,255,.14); }
+.contact-card h3 {
+  color: #fff;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  margin-bottom: 8px;
+}
+.contact-card p { color: rgba(255,255,255,.72); margin-bottom: 20px; font-size: .9rem; }
+.icon-circle {
+  width: 68px; height: 68px;
+  border: 1.5px solid rgba(255,255,255,.45);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+  color: #fff;
+}
+
+/* ── Diamond Ridge Layout — The Difference ─────────────── */
+.difference-section {
+  background: #1a1a1a;
+  padding: 80px 0;
+}
+.section-header-light { text-align: center; margin-bottom: 48px; }
+.section-header-light h2 { color: #fff; font-size: 2rem; }
+.eyebrow-light {
+  display: inline-block;
+  font-size: .75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .15em;
+  color: var(--green-light);
+  margin-bottom: 10px;
+}
+.difference-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+.difference-card {
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: var(--r-lg);
+  padding: 44px 36px;
+  text-align: center;
+  color: #fff;
+  transition: border-color .2s;
+}
+.difference-card:hover { border-color: var(--green-light); }
+.icon-circle-outline {
+  border-color: var(--green-light);
+  color: var(--green-light);
+  margin-bottom: 24px;
+}
+.difference-card h3 {
+  color: #fff;
+  font-size: .95rem;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  margin-bottom: 12px;
+}
+.difference-card p { color: rgba(255,255,255,.6); font-size: .9rem; line-height: 1.7; }
+
+/* ── Service cards — accent top border ─────────────────── */
+.service-card { border-top: 4px solid var(--green-light); }
+
+/* ── Hero — uppercase headline ──────────────────────────── */
+.hero h1 { text-transform: uppercase; letter-spacing: .04em; }
+
+/* ── Book Consultation Section ──────────────────────────── */
+.consultation-section {
+  background: var(--green-dark);
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+}
+.consultation-section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(31,77,43,.97) 0%, rgba(22,53,32,.94) 100%);
+}
+.consultation-content {
+  position: relative; z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+.consultation-text h2 { color: #fff; font-size: 2.1rem; margin-bottom: 16px; text-transform: uppercase; letter-spacing: .04em; }
+.consultation-text p { color: rgba(255,255,255,.78); font-size: 1rem; line-height: 1.75; margin-bottom: 28px; }
+.consult-list { list-style: none; padding: 0; }
+.consult-list li { color: rgba(255,255,255,.85); padding: 6px 0; font-size: .95rem; }
+
 /* ── Footer ──────────────────────────────────────────────── */
-.site-footer { background: #0d2718; color: rgba(255,255,255,.65); }
+.site-footer { background: #0f0f0f; color: rgba(255,255,255,.65); }
 .footer-main { padding: 56px 0 48px; }
 .footer-grid {
   display: grid;

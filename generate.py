@@ -396,22 +396,21 @@ def make_homepage():
 
 <!-- HERO -->
 <section class="hero">
-  <img class="hero-bg" src="/images/Gemini_Generated_Image_imgt0pimgt0pimgt.png" alt="Beautiful Long Island front yard landscaped by {NAME}" />
+  <img class="hero-bg" src="/images/hero-bg.jpg" alt="{NAME} — Long Island {B['industryLower']} experts" />
   <div class="hero-overlay"></div>
   <div class="container">
     <div class="hero-content">
-      <span class="hero-brand-name">{NAME}</span>
-      <span class="hero-badge">Hempstead, NY · Nassau &amp; Suffolk Counties</span>
+      <span class="hero-badge">Nassau &amp; Suffolk Counties · Long Island, NY</span>
       <h1>{B['tagline']}</h1>
-      <p>{B.get('heroSubtext', f'Professional {B.get("industryLower","contracting")} services for Long Island homeowners. Call {PHONE} for a free estimate.')}</p>
+      <p>{B.get('heroSubtext', '')}</p>
       <div class="hero-actions">
         <a href="/request-service.html" class="btn btn-primary btn-lg">Get a Free Estimate</a>
         <a href="tel:{PHONE_RAW}" class="btn btn-outline-white btn-lg">Call {PHONE}</a>
       </div>
       <div class="hero-trust">
         <span>⭐ 5-Star Rated</span>
-        <span>🛡️ Certified &amp; Insured</span>
-        <span>📍 Hempstead, NY Based</span>
+        <span>🛡️ Licensed &amp; Insured</span>
+        <span>📍 Long Island Based</span>
       </div>
     </div>
   </div>
@@ -420,60 +419,79 @@ def make_homepage():
 <!-- STATS -->
 <div class="stats-bar">
   <div class="container stats-grid">
-    <div class="stat"><span class="stat-n">10+</span><span class="stat-l">Years on Long Island</span></div>
-    <div class="stat"><span class="stat-n">500+</span><span class="stat-l">Happy Customers</span></div>
-    <div class="stat"><span class="stat-n">20+</span><span class="stat-l">Cities Served</span></div>
-    <div class="stat"><span class="stat-n">100%</span><span class="stat-l">Satisfaction Guaranteed</span></div>
+    <div class="stat"><span class="stat-n">1</span><span class="stat-l">You Are Our Only Focus</span></div>
+    <div class="stat"><span class="stat-n">100%</span><span class="stat-l">Customer Satisfaction</span></div>
+    <div class="stat"><span class="stat-n">{len(AREAS)}+</span><span class="stat-l">Cities Served</span></div>
+    <div class="stat"><span class="stat-n">500+</span><span class="stat-l">Projects Completed</span></div>
   </div>
 </div>
 
-<!-- BOOKING -->
-<section class="booking-section">
-  <div class="container booking-wrap">
-    <div class="booking-info">
-      <span class="eyebrow">Start Your Project</span>
-      <h2>See Your Project Plan</h2>
-      <p>Quick response — typically within 1 hour. No pressure, no obligation. Just honest pricing from a locally owned Long Island team.</p>
-      <ul>
-        <li><span class="icon">📞</span><div><strong>Call or text {PHONE}</strong> — Mon–Sat 7am–6pm, quick response guaranteed.</div></li>
-        <li><span class="icon">🏡</span><div><strong>On-site consultation</strong> — your property gets a personal walkthrough before anything is quoted.</div></li>
-        <li><span class="icon">📋</span><div><strong>Upfront pricing</strong> — a detailed quote in hand before any work begins. No surprises.</div></li>
-        <li><span class="icon">✅</span><div><strong>100% satisfaction guarantee</strong> — the job isn't done until it meets your standard.</div></li>
-      </ul>
+<!-- CONTACT CARDS -->
+<section class="contact-cards-section">
+  <div class="container contact-cards-grid">
+    <div class="contact-card">
+      <div class="icon-circle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.44 2 2 0 0 1 3.6 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6.29 6.29l.94-.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </div>
+      <h3>Call Us</h3>
+      <p>Speak directly with our team — quick response guaranteed</p>
+      <a href="tel:{PHONE_RAW}" class="btn btn-outline-white">{PHONE}</a>
     </div>
-    <div class="booking-form-col">
-      {booking_form(compact=True)}
+    <div class="contact-card">
+      <div class="icon-circle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      </div>
+      <h3>Email Us</h3>
+      <p>Send us your project details and we'll follow up promptly</p>
+      <a href="mailto:{B['email']}" class="btn btn-outline-white">{B['email']}</a>
+    </div>
+    <div class="contact-card">
+      <div class="icon-circle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      </div>
+      <h3>Free Estimate</h3>
+      <p>No pressure, no obligation — just honest pricing upfront</p>
+      <a href="/request-service.html" class="btn btn-secondary">Get Started</a>
     </div>
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section class="section section-light" id="how-it-works">
+<!-- THE DIFFERENCE -->
+<section class="difference-section">
   <div class="container">
-    <div class="section-header">
-      <span class="eyebrow">How {NAME} Works</span>
-      <h2>Your Project, Step by Step</h2>
-      <p>Three steps from first contact to a finished outdoor space — designed around your vision, not a template.</p>
+    <div class="section-header section-header-light">
+      <span class="eyebrow-light">Why Choose Us</span>
+      <h2>The {NAME} Difference</h2>
     </div>
-    <div class="steps-grid">
-      <div class="step-card">
-        <div class="step-number">1</div>
-        <h3 class="step-title">Share Your Vision</h3>
-        <p class="step-desc">Tell us about your project — call, text, or fill out the online form. Quick response, typically within 1 hour, to confirm your consultation.</p>
+    <div class="difference-grid">
+      <div class="difference-card">
+        <div class="icon-circle icon-circle-outline">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+        </div>
+        <h3>Licensed &amp; Insured</h3>
+        <p>Fully licensed in New York State with comprehensive liability and workers' compensation on every project.</p>
       </div>
-      <div class="step-card">
-        <div class="step-number">2</div>
-        <h3 class="step-title">Expert Assessment</h3>
-        <p class="step-desc">A {NAME} specialist visits your property, walks the space with you, and listens to your goals. You receive a detailed quote before any commitment.</p>
+      <div class="difference-card">
+        <div class="icon-circle icon-circle-outline">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </div>
+        <h3>Custom Design</h3>
+        <p>Every project is designed around your vision, your property, and your budget — not a cookie-cutter template.</p>
       </div>
-      <div class="step-card">
-        <div class="step-number">3</div>
-        <h3 class="step-title">Your Custom Build</h3>
-        <p class="step-desc">Once the plan is approved, the crew handles everything — materials, grading, installation, and final cleanup. Your outdoor space, exactly as envisioned.</p>
+      <div class="difference-card">
+        <div class="icon-circle icon-circle-outline">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>Permit Coordination</h3>
+        <p>We handle all permits and municipal approvals — no surprises, no delays, work starts on time.</p>
       </div>
-    </div>
-    <div class="text-center mt-4">
-      <a href="/request-service.html" class="btn btn-primary">Schedule Your Consultation</a>
+      <div class="difference-card">
+        <div class="icon-circle icon-circle-outline">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h3>100% Satisfaction</h3>
+        <p>The job isn't finished until it meets your standard. We back every project with a full satisfaction guarantee.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -482,7 +500,7 @@ def make_homepage():
 <section class="section" id="services">
   <div class="container">
     <div class="section-header">
-      <span class="eyebrow">What We Do</span>
+      <span class="eyebrow">What We Do For You</span>
       <h2>{B.get('servicesHeadline', f'{B.get("industry","Professional")} Services for Long Island')}</h2>
       <p>{B.get('servicesSubtext', f'Professional {B.get("industryLower","services")} for Long Island homeowners and businesses.')}</p>
     </div>
@@ -492,32 +510,12 @@ def make_homepage():
   </div>
 </section>
 
-<!-- WHY US -->
-<section class="split-section">
-  <div class="split-img">
-    <img src="/images/Gemini_Generated_Image_xrda4xxrda4xxrda.png" alt="Green Empire Landscaping team — Hempstead, NY" />
-  </div>
-  <div class="split-content">
-    <span class="eyebrow">Why {NAME}</span>
-    <h2>Local Crew. Serious Craftsmanship.</h2>
-    <p>Not a franchise — a locally owned team based in Hempstead. Every project gets personal attention from people who take pride in their work.</p>
-    <ul class="check-list">
-      <li>Certified &amp; insured in New York State</li>
-      <li>Transparent pricing — detailed quote before work begins</li>
-      <li>Custom designs built around your property and budget</li>
-      <li>100% satisfaction guarantee on every job</li>
-    </ul>
-    <a href="/about/" class="btn btn-primary">Meet Our Team</a>
-  </div>
-</section>
-{gallery_section()}
-
 <!-- REVIEWS -->
 <section class="section section-light" id="reviews">
   <div class="container">
     <div class="section-header">
-      <span class="eyebrow">Reviews</span>
-      <h2>See How We've Transformed Local Properties</h2>
+      <span class="eyebrow">Client Reviews</span>
+      <h2>What Long Island Homeowners Say</h2>
     </div>
     <div class="review-grid">
       {review_cards()}
@@ -533,8 +531,8 @@ def make_homepage():
   <div class="container">
     <div class="section-header">
       <span class="eyebrow">Service Areas</span>
-      <h2>Serving All of Long Island, NY</h2>
-      <p>We cover Nassau and Suffolk Counties. Don't see your city? Call us — we likely serve you.</p>
+      <h2>Serving Nassau &amp; Suffolk Counties</h2>
+      <p>We cover all of Long Island. Don't see your city? Call us — we likely serve you.</p>
     </div>
     <div class="city-grid">
       {service_area_links()}
@@ -558,34 +556,22 @@ def make_homepage():
   </div>
 </section>
 
-<!-- BLOG RESOURCES -->
-<!-- TODO: create /blog/ pages and update these links when ready -->
-<section class="section blog-resources">
-  <div class="container">
-    <div class="section-header">
-      <span class="eyebrow">Learn More</span>
-      <h2>Helpful Resources</h2>
-      <p>Expert tips and guides for your Long Island property</p>
+<!-- BOOK A CONSULTATION -->
+<section class="consultation-section">
+  <div class="container consultation-content">
+    <div class="consultation-text">
+      <span class="eyebrow-light">Get Started</span>
+      <h2>Book a Free Consultation</h2>
+      <p>Ready to start your project? Schedule a free on-site consultation. We'll walk your property, listen to your goals, and give you a detailed quote — no pressure, no obligation.</p>
+      <ul class="consult-list">
+        <li>✓ Free on-site visit</li>
+        <li>✓ Detailed written quote</li>
+        <li>✓ Response within 1 hour</li>
+        <li>✓ No commitment required</li>
+      </ul>
     </div>
-    <div class="blog-grid">
-      <article class="blog-card">
-        <h3>What Landscaping Zone Are You in and Why Does It Matter?</h3>
-        <p>Before you give up on your garden, learn about hardiness zones and how to choose plants that thrive in your specific Long Island climate — and what our team recommends for Nassau &amp; Suffolk.</p>
-        <a href="/blog/landscaping-zones/" class="read-more">Read More →</a>
-      </article>
-      <article class="blog-card">
-        <h3>Outdoor Landscaping Ideas for Every Budget</h3>
-        <p>Make the most of your backyard with creative outdoor renovation ideas from our Long Island team — from custom patio builds to full landscape transformations, for every budget.</p>
-        <a href="/blog/outdoor-landscaping-ideas/" class="read-more">Read More →</a>
-      </article>
-      <article class="blog-card">
-        <h3>Why You Should Schedule a Spring Tune-up for Your Lawn</h3>
-        <p>If you've neglected your spring lawn maintenance, it may be time to bring in some help. Learn why a professional spring tune-up is essential for Long Island lawns and what it includes.</p>
-        <a href="/blog/spring-lawn-tuneup/" class="read-more">Read More →</a>
-      </article>
-    </div>
-    <div class="text-center mt-4">
-      <a href="/blog/" class="btn btn-outline">View All Articles</a>
+    <div class="consultation-form-wrap">
+      {booking_form(compact=True)}
     </div>
   </div>
 </section>
