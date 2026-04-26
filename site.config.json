@@ -31,7 +31,13 @@
     "secondaryColor": "#2B6B3A",
     "secondaryDark": "#1F4D2B",
     "industry": "Construction & Renovation",
-    "industryLower": "construction & renovation"
+    "industryLower": "construction & renovation",
+    "heroSlides": [
+      "/images/hero-bg.jpg",
+      "/images/hero-slides/slide-2.jpg",
+      "/images/hero-slides/slide-3.jpg",
+      "/images/hero-slides/slide-4.jpg"
+    ]
   },
   "services": [
     {
@@ -39,7 +45,7 @@
       "name": "Home Additions",
       "shortName": "Additions",
       "icon": "🏠",
-      "image": "",
+      "image": "/images/services/home-additions.jpg",
       "description": "Expand your living space with a professionally designed and built home addition — first-floor extensions, second-story additions, and room expansions built to match your existing structure.",
       "heroText": "Need more space but love your neighborhood? Green Empire Builders designs and constructs seamless home additions for Long Island homeowners — built to code, on budget, and finished to the highest standard.",
       "bullets": [
@@ -55,7 +61,7 @@
       "name": "Kitchen Remodeling",
       "shortName": "Kitchens",
       "icon": "🍳",
-      "image": "",
+      "image": "/images/services/kitchen-remodeling.jpg",
       "description": "Transform your kitchen into the heart of your home — custom cabinetry, premium countertops, updated layouts, and modern finishes designed around how you actually cook and live.",
       "heroText": "A kitchen remodel is one of the best investments a Long Island homeowner can make. Green Empire Builders handles every detail — from demolition to the final cabinet hardware — so your new kitchen is exactly what you envisioned.",
       "bullets": [
@@ -71,7 +77,7 @@
       "name": "Bathroom Remodeling",
       "shortName": "Bathrooms",
       "icon": "🚿",
-      "image": "",
+      "image": "/images/services/bathroom-remodeling.jpg",
       "description": "Upgrade your bathroom from dated to stunning — custom tile work, walk-in showers, new vanities, and complete layout redesigns handled by an experienced Long Island crew.",
       "heroText": "Whether it's a master bath overhaul or a guest bathroom refresh, Green Empire Builders brings the same attention to detail to every project. We handle permits, plumbing coordination, tile work, and every finish in between.",
       "bullets": [
@@ -87,7 +93,7 @@
       "name": "Dormer Construction",
       "shortName": "Dormers",
       "icon": "🏗️",
-      "image": "",
+      "image": "/images/services/dormer-construction.jpg",
       "description": "Add square footage, natural light, and headroom to your attic with a professionally built dormer — one of the most cost-effective ways to expand your Long Island home.",
       "heroText": "Dormers add space, light, and value without the footprint of a full addition. Green Empire Builders has built dozens of dormers across Long Island — from shed dormers that open up an entire floor to custom designs that match your home's character.",
       "bullets": [
@@ -103,7 +109,7 @@
       "name": "Basement Finishing",
       "shortName": "Basements",
       "icon": "🏚️",
-      "image": "",
+      "image": "/images/services/basement-finishing.jpg",
       "description": "Turn your unfinished basement into livable square footage — home offices, playrooms, entertainment spaces, or guest suites built with proper waterproofing, egress, and code compliance.",
       "heroText": "An unfinished basement is wasted potential. Green Empire Builders transforms Long Island basements into fully finished, code-compliant living spaces — from framing and waterproofing through flooring, lighting, and final finishes.",
       "bullets": [
@@ -119,7 +125,7 @@
       "name": "Full Home Renovation",
       "shortName": "Renovations",
       "icon": "🔨",
-      "image": "",
+      "image": "/images/services/full-home-renovation.jpg",
       "description": "Complete home transformations — gut renovations, multi-room remodels, and whole-house updates managed by a single trusted contractor from first demo to final walkthrough.",
       "heroText": "Some homes need more than one room updated — they need a complete transformation. Green Empire Builders manages full-scale Long Island home renovations from start to finish, keeping your project on schedule and your home protected throughout.",
       "bullets": [
@@ -135,7 +141,7 @@
       "name": "Custom Home Building",
       "shortName": "Custom Homes",
       "icon": "🏡",
-      "image": "",
+      "image": "/images/services/custom-home-building.jpg",
       "description": "Build the home you've always wanted, exactly the way you want it — custom design, premium materials, and hands-on project management from foundation to final key.",
       "heroText": "Building a custom home on Long Island is one of the most significant decisions you'll make. Green Empire Builders guides you through every phase — site prep, design, permits, construction, and finishing — with full transparency and no surprises.",
       "bullets": [

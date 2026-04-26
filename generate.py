@@ -70,15 +70,6 @@ def nav(active=""):
     )
     return f"""
 <header class="site-header">
-  <div class="top-bar">
-    <div class="container">
-      <span>Locally owned · {B['city']}, {B['state']} {B['zip']}</span>
-      <div class="top-bar-right">
-        <a href="tel:{PHONE_RAW}">📞 {PHONE}</a>
-        <a href="/request-service.html" class="top-bar-cta">Free Estimate</a>
-      </div>
-    </div>
-  </div>
   <nav class="main-nav" aria-label="Main navigation">
     <div class="container nav-inner">
       <a href="/" class="nav-logo">
@@ -371,6 +362,17 @@ def gallery_section():
 # ─────────────────────────────────────────────────────────
 
 def make_homepage():
+    builders_h1 = json.dumps(B['tagline'])
+    builders_p  = json.dumps(B.get('heroSubtext', ''))
+    slides = B.get('heroSlides', ['/images/hero-bg.jpg'])
+    slide_divs = "\n    ".join(
+        f'<div class="hero-slide{" active" if i == 0 else ""}" style="background-image:url(\'{s}\')"></div>'
+        for i, s in enumerate(slides)
+    )
+    dot_buttons = "\n    ".join(
+        f'<button class="hero-dot{" active" if i == 0 else ""}" data-slide="{i}" aria-label="Go to slide {i+1}"></button>'
+        for i in range(len(slides))
+    )
     service_cards_list = []
     for s in SERVICES:
         service_cards_list.append(f"""
@@ -399,14 +401,21 @@ def make_homepage():
 {nav()}
 
 <!-- HERO -->
-<section class="hero">
-  <img class="hero-bg" src="/images/hero-bg.jpg" alt="{NAME} — Long Island {B['industryLower']} experts" />
+<section class="hero" id="hero-carousel">
+  <div class="hero-slides">
+    {slide_divs}
+  </div>
   <div class="hero-overlay"></div>
   <div class="container">
     <div class="hero-content">
-      <span class="hero-badge">Nassau &amp; Suffolk Counties · Long Island, NY</span>
-      <h1>{B['tagline']}</h1>
-      <p>{B.get('heroSubtext', '')}</p>
+      <div class="hero-switcher">
+        <span class="hero-switcher-label">Preview:</span>
+        <button class="hero-switch-btn active" data-brand="builders" onclick="switchBrand('builders')">Builders</button>
+        <button class="hero-switch-btn" data-brand="landscaping" onclick="switchBrand('landscaping')">Landscaping</button>
+      </div>
+      <span class="hero-badge" id="hero-badge">Nassau &amp; Suffolk Counties · Long Island, NY</span>
+      <h1 id="hero-h1">{B['tagline']}</h1>
+      <p id="hero-p">{B.get('heroSubtext', '')}</p>
       <div class="hero-actions">
         <a href="/request-service.html" class="btn btn-primary btn-lg">Get a Free Estimate</a>
         <a href="tel:{PHONE_RAW}" class="btn btn-outline-white btn-lg">Call {PHONE}</a>
@@ -418,7 +427,53 @@ def make_homepage():
       </div>
     </div>
   </div>
+  <div class="hero-slide-dots">
+    {dot_buttons}
+  </div>
 </section>
+<script>
+(function() {{
+  var brands = {{
+    builders: {{ h1: {builders_h1}, p: {builders_p} }},
+    landscaping: {{
+      h1: "Long Island's Premier Landscaping & Outdoor Renovation Company",
+      p: "Transform your property with expert landscape design, hardscaping, and lawn care. Green Empire Landscaping serves Nassau & Suffolk Counties with craftsmanship that lasts."
+    }}
+  }};
+  window.switchBrand = function(brand) {{
+    var b = brands[brand];
+    document.getElementById('hero-h1').textContent = b.h1;
+    document.getElementById('hero-p').textContent = b.p;
+    document.querySelectorAll('.hero-switch-btn').forEach(function(btn) {{
+      btn.classList.toggle('active', btn.dataset.brand === brand);
+    }});
+  }};
+}})();
+</script>
+<script>
+(function() {{
+  var slides = document.querySelectorAll('#hero-carousel .hero-slide');
+  var dots   = document.querySelectorAll('#hero-carousel .hero-dot');
+  var cur = 0, timer;
+  function goTo(n) {{
+    slides[cur].classList.remove('active');
+    dots[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    dots[cur].classList.add('active');
+  }}
+  function next() {{ goTo(cur + 1); }}
+  function start() {{ timer = setInterval(next, 5500); }}
+  function stop()  {{ clearInterval(timer); }}
+  dots.forEach(function(dot, i) {{
+    dot.addEventListener('click', function() {{ stop(); goTo(i); start(); }});
+  }});
+  var hero = document.getElementById('hero-carousel');
+  hero.addEventListener('mouseenter', stop);
+  hero.addEventListener('mouseleave', start);
+  start();
+}})();
+</script>
 
 <!-- STATS -->
 <div class="stats-bar">
