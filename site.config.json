@@ -12,8 +12,8 @@
     "hours": "Mon–Sat 8am–7pm",
     "domain": "www.greenempirebuilders.com",
     "zapierWebhook": "REPLACE_WITH_NEW_ZAPIER_WEBHOOK_URL",
-    "font": "Playfair Display",
-    "fontUrl": "https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap",
+    "font": "Inter",
+    "accentColor": "#C17F3A",
     "forms": {
       "notifyEmail": "greenempirebuilders@gmail.com",
       "notifyPhone": "5167121231"

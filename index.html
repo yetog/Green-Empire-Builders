@@ -28,7 +28,7 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/css/main.css" />
   <link rel="stylesheet" href="/css/theme.css" />
   <link rel="stylesheet" href="/css/builders-design.css" />
@@ -280,6 +280,50 @@
   </div>
 </section>
 
+<!-- BOOK A CONSULTATION -->
+<section class="consultation-section">
+  <div class="container consultation-content">
+    <div class="consultation-text">
+      <span class="eyebrow-light">Get Started</span>
+      <h2>Book a Free Consultation</h2>
+      <p>Ready to start your project? Schedule a free on-site consultation. We'll walk your property, listen to your goals, and give you a detailed quote — no pressure, no obligation.</p>
+      <ul class="consult-list">
+        <li>✓ Free on-site visit</li>
+        <li>✓ Detailed written quote</li>
+        <li>✓ Response within 1 hour</li>
+        <li>✓ No commitment required</li>
+      </ul>
+    </div>
+    <div class="consultation-form-wrap">
+      
+<div class="booking-card">
+  <div class="booking-card-header">
+    <h3>Get Your Custom Quote</h3>
+    <p>Response within 1 business hour</p>
+  </div>
+  <form action="REPLACE_WITH_NEW_ZAPIER_WEBHOOK_URL" method="POST" class="booking-form" data-phone="(516) 595-0684">
+    <div class="form-group"><label>Name *</label><input type="text" name="name" required placeholder="Your full name" /></div>
+    <div class="form-group"><label>Phone *</label><input type="tel" name="phone" required placeholder="(516) 595-0684" /></div>
+    <div class="form-group"><label>Service</label>
+      <select name="service"><option value="">Select a service...</option><option value="home-additions">Home Additions</option>
+<option value="kitchen-remodeling">Kitchen Remodeling</option>
+<option value="bathroom-remodeling">Bathroom Remodeling</option>
+<option value="dormer-construction">Dormer Construction</option>
+<option value="basement-finishing">Basement Finishing</option>
+<option value="full-home-renovation">Full Home Renovation</option>
+<option value="custom-home-building">Custom Home Building</option></select>
+    </div>
+    <div class="form-group"><label>Details</label><textarea name="message" rows="3" placeholder="Tell us about your project..."></textarea></div>
+    <input type="text" name="_gotcha" style="display:none" />
+    <input type="hidden" name="_next" value="/thank-you.html" />
+    <div class="form-check"><label class="form-check-label"><input type="checkbox" name="sms_opt_in" value="yes" class="form-check-input" /> Text me updates about my estimate</label></div>
+    <button type="submit" class="btn btn-primary btn-block">Send Request →</button>
+  </form>
+</div>
+    </div>
+  </div>
+</section>
+
 <!-- REVIEWS -->
 <section class="section section-light" id="reviews">
   <div class="container">
@@ -401,50 +445,6 @@
     </div>
     <div class="text-center mt-4">
       <a href="/faq/" class="btn btn-outline">See All FAQs</a>
-    </div>
-  </div>
-</section>
-
-<!-- BOOK A CONSULTATION -->
-<section class="consultation-section">
-  <div class="container consultation-content">
-    <div class="consultation-text">
-      <span class="eyebrow-light">Get Started</span>
-      <h2>Book a Free Consultation</h2>
-      <p>Ready to start your project? Schedule a free on-site consultation. We'll walk your property, listen to your goals, and give you a detailed quote — no pressure, no obligation.</p>
-      <ul class="consult-list">
-        <li>✓ Free on-site visit</li>
-        <li>✓ Detailed written quote</li>
-        <li>✓ Response within 1 hour</li>
-        <li>✓ No commitment required</li>
-      </ul>
-    </div>
-    <div class="consultation-form-wrap">
-      
-<div class="booking-card">
-  <div class="booking-card-header">
-    <h3>Get Your Custom Quote</h3>
-    <p>Response within 1 business hour</p>
-  </div>
-  <form action="REPLACE_WITH_NEW_ZAPIER_WEBHOOK_URL" method="POST" class="booking-form" data-phone="(516) 595-0684">
-    <div class="form-group"><label>Name *</label><input type="text" name="name" required placeholder="Your full name" /></div>
-    <div class="form-group"><label>Phone *</label><input type="tel" name="phone" required placeholder="(516) 595-0684" /></div>
-    <div class="form-group"><label>Service</label>
-      <select name="service"><option value="">Select a service...</option><option value="home-additions">Home Additions</option>
-<option value="kitchen-remodeling">Kitchen Remodeling</option>
-<option value="bathroom-remodeling">Bathroom Remodeling</option>
-<option value="dormer-construction">Dormer Construction</option>
-<option value="basement-finishing">Basement Finishing</option>
-<option value="full-home-renovation">Full Home Renovation</option>
-<option value="custom-home-building">Custom Home Building</option></select>
-    </div>
-    <div class="form-group"><label>Details</label><textarea name="message" rows="3" placeholder="Tell us about your project..."></textarea></div>
-    <input type="text" name="_gotcha" style="display:none" />
-    <input type="hidden" name="_next" value="/thank-you.html" />
-    <div class="form-check"><label class="form-check-label"><input type="checkbox" name="sms_opt_in" value="yes" class="form-check-input" /> Text me updates about my estimate</label></div>
-    <button type="submit" class="btn btn-primary btn-block">Send Request →</button>
-  </form>
-</div>
     </div>
   </div>
 </section>
