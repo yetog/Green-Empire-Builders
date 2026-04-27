@@ -5,12 +5,12 @@
     "phone": "(516) 595-0684",
     "phoneRaw": "5165950684",
     "email": "greenempirebuilders@gmail.com",
-    "address": "Long Island",
-    "city": "Massapequa",
+    "address": "5020 Sunrise Hwy",
+    "city": "Massapequa Park",
     "state": "NY",
-    "zip": "11758",
+    "zip": "11762",
     "hours": "Mon–Sat 8am–7pm",
-    "domain": "www.greenempirebuilders.com",
+    "domain": "www.greenempirebuild.com",
     "zapierWebhook": "REPLACE_WITH_NEW_ZAPIER_WEBHOOK_URL",
     "font": "Inter",
     "accentColor": "#C17F3A",
@@ -199,31 +199,39 @@
   "faqs": [
     {
       "q": "What areas of Long Island do you serve?",
-      "a": "We serve Nassau and Suffolk Counties including Massapequa, Merrick, Bellmore, Wantagh, Seaford, Freeport, Baldwin, Oceanside, Rockville Centre, Levittown, Amityville, Lindenhurst, Babylon, and more. Not sure if we cover your area? Call or text us at (516) 595-0684."
+      "a": "Green Empire Builders serves Nassau and Suffolk Counties including Massapequa, Merrick, Bellmore, Wantagh, Seaford, Freeport, Baldwin, Oceanside, Rockville Centre, Levittown, Amityville, Lindenhurst, Babylon, and more. Not sure if we cover your area? Call or text us at (516) 595-0684."
     },
     {
-      "q": "How do I get a free estimate?",
-      "a": "Call or text us at (516) 595-0684, or fill out the estimate form on our website. We'll get back to you within 1 business hour to schedule a free on-site consultation. No pressure, no obligation."
+      "q": "How do I know what my renovation will cost?",
+      "a": "Every project is different, which is why we start with a free on-site consultation. We assess the scope, your goals, and your property before providing a detailed written quote. Factors that affect cost include square footage, material selections, structural changes, and permit requirements. We never start work without your full pricing approval."
     },
     {
-      "q": "Are you licensed and insured?",
-      "a": "Yes. Green Empire Builders is fully licensed and insured in New York State. We carry comprehensive general liability insurance and workers' compensation on every project, and we coordinate all permits through your local municipality."
-    },
-    {
-      "q": "How long does a home addition or renovation take?",
-      "a": "Timelines depend on the scope. A bathroom remodel typically takes 2–4 weeks. Kitchen renovations run 4–8 weeks. A full home addition or second story can take 3–6 months. We provide a clear, realistic timeline before work begins and update you throughout."
+      "q": "Should I remodel or move to a bigger home?",
+      "a": "In most cases, a well-planned renovation or addition is more cost-effective than buying a larger home on Long Island. You keep your location, your neighborhood, and your equity while gaining the space and features you want. We can help you evaluate whether an addition, a second story, or a full renovation makes the most sense for your situation."
     },
     {
       "q": "Do you handle permits?",
-      "a": "Yes — permit coordination is included in every project. We manage the full permitting process with your local building department so you don't have to. Work begins only after all required approvals are in place."
+      "a": "Yes. Permit coordination is included in every project. We manage the full permitting process with your local building department so you do not have to. Work begins only after all required approvals are in place."
     },
     {
-      "q": "What is your process from consultation to completion?",
-      "a": "We start with a free on-site consultation to understand your goals. Then we develop a detailed proposal with timeline and pricing. Once approved, we pull permits and begin construction — keeping you informed at every phase. Final walkthrough and sign-off happen before the last payment is made."
+      "q": "Can I add a second story to my existing home?",
+      "a": "Yes. Second-story additions are one of our specialties. We assess your existing foundation and structure, coordinate engineering if needed, and build the addition to match the character of your home. Most Long Island homes are good candidates. We will give you an honest assessment at the consultation."
     },
     {
-      "q": "Can you add a second story to my existing home?",
-      "a": "Yes. Second-story additions are one of our specialties. We assess your existing foundation and structure, coordinate engineering if needed, and build the addition to match the character of your home. Most Long Island homes are good candidates — we'll tell you honestly at the consultation."
+      "q": "Are you licensed and insured?",
+      "a": "Yes. Green Empire Builders is fully licensed and insured in New York State. We carry comprehensive general liability insurance and workers compensation on every project, and we coordinate all permits through your local municipality."
+    },
+    {
+      "q": "How long does a typical remodeling project take?",
+      "a": "Timelines depend on scope. A bathroom remodel typically takes 2 to 4 weeks. A kitchen renovation runs 4 to 8 weeks. A home addition or second story can take 3 to 6 months. We provide a realistic timeline before work begins and keep you updated throughout."
+    },
+    {
+      "q": "Do I need to move out during construction?",
+      "a": "In most cases, no. For kitchen and bathroom remodels or room additions, most homeowners stay in the home during construction. For full gut renovations or major structural work, temporary relocation may be needed for a portion of the project. We will be upfront about this during the consultation so you can plan accordingly."
+    },
+    {
+      "q": "How much contingency budget should I set aside?",
+      "a": "A standard recommendation is 10 to 15 percent of your total project budget. Renovation projects can uncover unexpected conditions once work begins, particularly in older Long Island homes. We do our best to identify potential issues during planning, but having a contingency in place means no surprises derail your project."
     }
   ],
   "gallery": [

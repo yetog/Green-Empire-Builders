@@ -358,12 +358,47 @@ def gallery_section():
 
 
 # ─────────────────────────────────────────────────────────
+# HELPER: Our Work / Recent Projects section
+# ─────────────────────────────────────────────────────────
+
+def work_section():
+    if not GALLERY:
+        return ""
+    items = []
+    for item in GALLERY:
+        if item.get("src"):
+            items.append(f"""<div class="work-item">
+        <img src="{item['src']}" alt="{item['alt']}" loading="lazy" />
+        <div class="work-item-label">{item['label']}</div>
+      </div>""")
+        else:
+            items.append(f"""<div class="work-item work-item-placeholder">
+        <div class="work-item-label">{item['label']}</div>
+      </div>""")
+    items_html = "\n      ".join(items)
+    return f"""
+<section class="section our-work-section" id="our-work">
+  <div class="container">
+    <div class="section-header">
+      <span class="eyebrow">Portfolio</span>
+      <h2>Recent Projects</h2>
+      <p>A sample of our construction and renovation work across Nassau and Suffolk Counties.</p>
+    </div>
+    <div class="work-grid">
+      {items_html}
+    </div>
+    <div class="text-center mt-4">
+      <a href="/request-service.html" class="btn btn-primary">Start Your Project</a>
+    </div>
+  </div>
+</section>"""
+
+
+# ─────────────────────────────────────────────────────────
 # PAGE: Homepage
 # ─────────────────────────────────────────────────────────
 
 def make_homepage():
-    builders_h1 = json.dumps(B['tagline'])
-    builders_p  = json.dumps(B.get('heroSubtext', ''))
     slides = B.get('heroSlides', ['/images/hero-bg.jpg'])
     slide_divs = "\n    ".join(
         f'<div class="hero-slide{" active" if i == 0 else ""}" style="background-image:url(\'{s}\')"></div>'
@@ -408,12 +443,7 @@ def make_homepage():
   <div class="hero-overlay"></div>
   <div class="container">
     <div class="hero-content">
-      <div class="hero-switcher">
-        <span class="hero-switcher-label">Preview:</span>
-        <button class="hero-switch-btn active" data-brand="builders" onclick="switchBrand('builders')">Builders</button>
-        <button class="hero-switch-btn" data-brand="landscaping" onclick="switchBrand('landscaping')">Landscaping</button>
-      </div>
-      <span class="hero-badge" id="hero-badge">Nassau &amp; Suffolk Counties · Long Island, NY</span>
+      <span class="hero-badge">Nassau &amp; Suffolk Counties · Long Island, NY</span>
       <h1 id="hero-h1">{B['tagline']}</h1>
       <p id="hero-p">{B.get('heroSubtext', '')}</p>
       <div class="hero-actions">
@@ -431,25 +461,6 @@ def make_homepage():
     {dot_buttons}
   </div>
 </section>
-<script>
-(function() {{
-  var brands = {{
-    builders: {{ h1: {builders_h1}, p: {builders_p} }},
-    landscaping: {{
-      h1: "Long Island's Premier Landscaping & Outdoor Renovation Company",
-      p: "Transform your property with expert landscape design, hardscaping, and lawn care. Green Empire Landscaping serves Nassau & Suffolk Counties with craftsmanship that lasts."
-    }}
-  }};
-  window.switchBrand = function(brand) {{
-    var b = brands[brand];
-    document.getElementById('hero-h1').textContent = b.h1;
-    document.getElementById('hero-p').textContent = b.p;
-    document.querySelectorAll('.hero-switch-btn').forEach(function(btn) {{
-      btn.classList.toggle('active', btn.dataset.brand === brand);
-    }});
-  }};
-}})();
-</script>
 <script>
 (function() {{
   var slides = document.querySelectorAll('#hero-carousel .hero-slide');
@@ -568,6 +579,8 @@ def make_homepage():
     </div>
   </div>
 </section>
+
+{work_section()}
 
 <!-- BOOK A CONSULTATION -->
 <section class="consultation-section">
