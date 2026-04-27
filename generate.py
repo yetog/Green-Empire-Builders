@@ -184,6 +184,8 @@ def head(title, desc, canonical, schema=""):
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://{B['domain']}{canonical}" />
   <meta property="og:image" content="/images/hero-bg.jpg" />
+  <meta name="robots" content="index, follow" />
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
   {schema}
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -785,8 +787,8 @@ def make_services_hub():
 {bc}
 <section class="page-hero">
   <div class="container">
-    <h1>Our Landscaping Services</h1>
-    <p>Landscaping &amp; outdoor renovation for Long Island homeowners. Custom designs, premium materials, and certified craftsmanship — locally based in {B['city']}, NY.</p>
+    <h1>Our {B['industry']} Services</h1>
+    <p>Professional {B['industryLower']} for Long Island homeowners. Custom work, premium materials, and certified craftsmanship — locally based in {B['city']}, NY.</p>
   </div>
 </section>
 <section class="section">
@@ -821,10 +823,9 @@ def make_city_page(area):
     bc, bc_schema = breadcrumbs([("Home", "/"), ("Service Areas", "/service-areas/"), (city, None)])
 
     city_schema = f"""<script type="application/ld+json">
-  {{"@context":"https://schema.org","@type":"LandscapingBusiness",
+  {{"@context":"https://schema.org","@type":"{B.get('schemaType','LocalBusiness')}",
     "name":"{NAME} — {city}","url":"https://{B['domain']}/service-areas/{slug}/",
     "telephone":"{PHONE}","priceRange":"$$",
-    "@type":"{B.get('schemaType','LocalBusiness')}",
     "address":{{"@type":"PostalAddress","addressLocality":"{city}","addressRegion":"{B['state']}","addressCountry":"US"}},
     "areaServed":{{"@type":"City","name":"{city}"}}
   }}
@@ -846,8 +847,8 @@ def make_city_page(area):
 
 <section class="page-hero">
   <div class="container">
-    <h1>Landscaping Services in {city}, NY</h1>
-    <p>{NAME} serves {city} and surrounding {county} County communities. Call {PHONE} for a free estimate today.</p>
+    <h1>{B['industry']} in {city}, NY</h1>
+    <p>{NAME} serves {city} and surrounding {county} County homeowners. Call {PHONE} for a free estimate today.</p>
     <div class="hero-actions">
       <a href="/request-service.html" class="btn btn-secondary btn-lg">Get Free Estimate</a>
       <a href="tel:{PHONE_RAW}" class="btn btn-outline-white">Call {PHONE}</a>
@@ -858,9 +859,9 @@ def make_city_page(area):
 <section class="section">
   <div class="container content-sidebar-layout">
     <div class="content-main">
-      <h2>Your Local Landscaping Experts in {city}</h2>
-      <p>When {city} homeowners and businesses need reliable landscaping, they call {NAME}. We're based right here in {B['city']}, just minutes away — not a national franchise sending whoever is available. Our team knows {county} County properties and delivers consistent, high-quality work on every visit.</p>
-      <p>From weekly lawn maintenance to complete outdoor renovations, we handle everything for residential and commercial properties throughout {city} and surrounding {county} County.</p>
+      <h2>Your Local {B['industry']} Experts in {city}</h2>
+      <p>When {city} homeowners need reliable {B['industryLower']}, they call {NAME}. We are based right here in {B['city']}, just minutes away, not a national franchise sending whoever is available. Our team knows {county} County properties and delivers consistent, high-quality work on every project.</p>
+      <p>From kitchen remodels and bathroom renovations to full home additions and custom builds, we handle all phases of construction for homeowners throughout {city} and surrounding {county} County.</p>
 
       <h3>Services We Offer in {city}, NY</h3>
       <ul class="check-list">{service_list}</ul>
@@ -890,7 +891,7 @@ def make_city_page(area):
 
 <section class="cta-banner">
   <div class="container">
-    <h2>Need Landscaping in {city}, NY?</h2>
+    <h2>Need {B['industry']} in {city}, NY?</h2>
     <p>We're nearby and ready. Call or submit the form — response within 1 business hour.</p>
     <div class="cta-actions">
       <a href="/request-service.html" class="btn btn-secondary btn-lg">Get Free Estimate</a>
@@ -919,8 +920,8 @@ def make_areas_hub():
 
     bc, bc_schema = breadcrumbs([("Home", "/"), ("Service Areas", None)])
     content = f"""{head(
-        f"Landscaping Service Areas — Long Island, NY | {NAME}",
-        f"{NAME} serves Nassau and Suffolk Counties on Long Island. Click your city to see local landscaping services and get a free estimate.",
+        f"{B['industry']} Service Areas — Long Island, NY | {NAME}",
+        f"{NAME} serves Nassau and Suffolk Counties on Long Island. Click your city to see local {B['industryLower']} services and get a free estimate.",
         "/service-areas/",
         bc_schema
     )}
@@ -928,8 +929,8 @@ def make_areas_hub():
 {bc}
 <section class="page-hero">
   <div class="container">
-    <h1>Long Island Landscaping Service Areas</h1>
-    <p>{NAME} covers Nassau and Suffolk Counties. Select your city for local information and a free estimate.</p>
+    <h1>Long Island {B['industry']} Service Areas</h1>
+    <p>{NAME} covers Nassau and Suffolk Counties. Select your city for local {B['industryLower']} information and a free estimate.</p>
   </div>
 </section>
 <section class="section">
@@ -963,8 +964,8 @@ def make_areas_hub():
 def make_about():
     bc, bc_schema = breadcrumbs([("Home", "/"), ("About Us", None)])
     content = f"""{head(
-        f"About Us | {NAME} — Hempstead, NY",
-        f"Learn about {NAME}, Long Island's landscaping &amp; outdoor renovation company based in {B['city']}, NY. Locally owned, certified, and insured.",
+        f"About Us | {NAME} — {B['city']}, NY",
+        f"Learn about {NAME}, Long Island's trusted {B['industryLower']} company based in {B['city']}, NY. Locally owned, licensed, and insured.",
         "/about/",
         bc_schema
     )}
@@ -973,20 +974,20 @@ def make_about():
 <section class="page-hero">
   <div class="container">
     <h1>About {NAME}</h1>
-    <p>Long Island's locally owned landscaping company — based in {B['city']}, NY.</p>
+    <p>Long Island's locally owned {B['industryLower']} company — based in {B['city']}, NY.</p>
   </div>
 </section>
 <section class="section">
   <div class="container">
     <div class="split-section">
-      <div class="split-img"><img src="/images/Hero.png" alt="{NAME} — locally owned and operated in Hempstead, NY" /></div>
+      <div class="split-img"><img src="/images/Hero.png" alt="{NAME} — locally owned and operated in {B['city']}, NY" /></div>
       <div class="split-content">
         <span class="eyebrow">Who We Are</span>
         <h2>Built for Long Island</h2>
-        <p>{NAME} is a locally owned landscaping and outdoor renovation company based at 64 Hilton Ave in Hempstead, NY. We serve residential homeowners throughout Nassau and Suffolk Counties.</p>
-        <p>We're not a national franchise — every crew member is local, every estimate is honest, and every job is backed by our 100% satisfaction guarantee.</p>
+        <p>{NAME} is a locally owned construction and renovation company based in {B['city']}, NY. We serve residential homeowners throughout Nassau and Suffolk Counties.</p>
+        <p>We are not a national franchise. Every project is managed by our experienced team, every estimate is honest, and every job is backed by our 100% satisfaction guarantee.</p>
         <ul class="check-list">
-          <li>Fully certified and insured in New York State</li>
+          <li>Fully licensed and insured in New York State</li>
           <li>Locally owned — based in {B['city']}, NY</li>
           <li>Experienced crews with background checks</li>
           <li>100% satisfaction guarantee</li>
@@ -1003,10 +1004,10 @@ def make_about():
       <h2>The Green Empire Difference</h2>
     </div>
     <div class="features-grid">
-      <div class="feature-card"><div class="feature-icon">📍</div><h3>Local Expertise</h3><p>We know Long Island's soil, climate, and neighborhoods. Our recommendations are built for this area.</p></div>
-      <div class="feature-card"><div class="feature-icon">💰</div><h3>Transparent Pricing</h3><p>You'll always know what you're paying before we start. No surprises, no hidden fees.</p></div>
-      <div class="feature-card"><div class="feature-icon">⭐</div><h3>Satisfaction Guaranteed</h3><p>Not happy? We'll make it right. Every service is backed by our 100% guarantee.</p></div>
-      <div class="feature-card"><div class="feature-icon">📐</div><h3>Custom Designs</h3><p>Every project is designed specifically for your property — no templates, no shortcuts, no one-size-fits-all solutions.</p></div>
+      <div class="feature-card"><h3>Local Expertise</h3><p>We know Long Island's building codes, municipalities, and neighborhoods. Our work is designed for this market.</p></div>
+      <div class="feature-card"><h3>Transparent Pricing</h3><p>You will always know what you are paying before we start. Detailed written quotes, no surprises, no hidden fees.</p></div>
+      <div class="feature-card"><h3>Satisfaction Guaranteed</h3><p>The job is not finished until it meets your standard. Every project is backed by our full satisfaction guarantee.</p></div>
+      <div class="feature-card"><h3>Custom Approach</h3><p>Every project is designed around your home, your vision, and your budget. No cookie-cutter solutions.</p></div>
     </div>
   </div>
 </section>
@@ -1041,8 +1042,8 @@ def make_faq():
 
     bc, bc_schema = breadcrumbs([("Home", "/"), ("FAQ", None)])
     content = f"""{head(
-        f"FAQ — Landscaping Questions Answered | {NAME}",
-        f"Common questions about {NAME}'s landscaping services in {B['city']}, NY. Get answers about pricing, scheduling, service areas, and more.",
+        f"FAQ — {B['industry']} Questions Answered | {NAME}",
+        f"Common questions about {NAME}'s {B['industryLower']} services in {B['city']}, NY. Get answers about cost, permits, timelines, and more.",
         "/faq/",
         bc_schema + faq_schema
     )}
@@ -1134,7 +1135,7 @@ def make_request_service():
     bc, bc_schema = breadcrumbs([("Home", "/"), ("Request Service", None)])
     content = f"""{head(
         f"Request a Free Estimate | {NAME} | {PHONE}",
-        f"Request a free landscaping estimate from {NAME} in {B['city']}, NY. We serve all of Long Island and respond within 1 business hour.",
+        f"Request a free {B['industryLower']} estimate from {NAME} in {B['city']}, NY. We serve all of Long Island and respond within 1 business hour.",
         "/request-service.html",
         bc_schema
     )}
@@ -1151,7 +1152,7 @@ def make_request_service():
     <div class="content-sidebar-layout">
       <div class="content-main">
         <h2>Let's Talk About Your Project</h2>
-        <p>Whether it's a quick lawn mowing quote or a full landscape renovation, we're here to help. Tell us about your project and we'll provide a free, transparent estimate.</p>
+        <p>Whether it is a single room remodel or a full home addition, we are here to help. Tell us about your project and we will provide a free, transparent estimate.</p>
         <div class="features-grid" style="margin-top:2rem">
           <div class="feature-card"><div class="feature-icon">📞</div><h3>Call or Text</h3><p><a href="tel:{PHONE_RAW}">{PHONE}</a><br/>Mon–Sat, 7am–6pm</p></div>
           <div class="feature-card"><div class="feature-icon">📍</div><h3>Our Location</h3><p>{ADDRESS}</p></div>
@@ -1394,6 +1395,40 @@ def make_legal():
 
 
 # ─────────────────────────────────────────────────────────
+# PAGE: Sitemap + Robots
+# ─────────────────────────────────────────────────────────
+
+def make_sitemap():
+    from datetime import date
+    today = date.today().isoformat()
+    urls = [("/", "1.0", "weekly")]
+    urls += [(f"/services/{s['slug']}/", "0.9", "monthly") for s in SERVICES]
+    urls += [("/services/", "0.8", "monthly")]
+    urls += [(f"/service-areas/{a['slug']}/", "0.8", "monthly") for a in AREAS]
+    urls += [("/service-areas/", "0.7", "monthly")]
+    urls += [("/about/", "0.6", "monthly"), ("/faq/", "0.7", "monthly"),
+             ("/reviews/", "0.6", "monthly"), ("/request-service.html", "0.8", "monthly")]
+    items = "\n".join(f"""  <url>
+    <loc>https://{B['domain']}{u}</loc>
+    <lastmod>{today}</lastmod>
+    <changefreq>{freq}</changefreq>
+    <priority>{pri}</priority>
+  </url>""" for u, pri, freq in urls)
+    write("sitemap.xml", f"""<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{items}
+</urlset>""")
+
+def make_robots():
+    write("robots.txt", f"""User-agent: *
+Allow: /
+Disallow: /thank-you.html
+
+Sitemap: https://{B['domain']}/sitemap.xml
+""")
+
+
+# ─────────────────────────────────────────────────────────
 # RUN ALL GENERATORS
 # ─────────────────────────────────────────────────────────
 
@@ -1412,8 +1447,9 @@ make_faq()
 make_reviews()
 make_request_service()
 make_thank_you()
-make_blog_pages()
 make_legal()
+make_sitemap()
+make_robots()
 
 print(f"[OK] {len(pages_created)} pages generated:\n")
 for p in sorted(pages_created):
