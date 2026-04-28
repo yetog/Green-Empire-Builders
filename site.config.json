@@ -235,11 +235,11 @@
     }
   ],
   "gallery": [
-    { "src": "", "alt": "Home addition — second story construction on Long Island", "label": "Second Story Addition", "icon": "🏠" },
-    { "src": "", "alt": "Custom kitchen remodel with white cabinetry and quartz countertops", "label": "Kitchen Remodel", "icon": "🍳" },
-    { "src": "", "alt": "Master bathroom renovation with walk-in shower and tile work", "label": "Bathroom Renovation", "icon": "🚿" },
-    { "src": "", "alt": "Dormer construction adding space and light to Long Island home", "label": "Dormer Addition", "icon": "🏗️" },
-    { "src": "", "alt": "Finished basement converted to modern living space", "label": "Basement Finish", "icon": "🏚️" },
-    { "src": "", "alt": "Full home renovation — complete interior rebuild", "label": "Full Home Renovation", "icon": "🔨" }
+    { "src": "/images/gallery/second-story-addition.jpg", "alt": "Second story home addition on Long Island", "label": "Second Story Addition" },
+    { "src": "/images/gallery/kitchen-remodel.jpg", "alt": "Custom kitchen remodel with white cabinetry", "label": "Kitchen Remodel" },
+    { "src": "/images/gallery/bathroom-renovation.jpg", "alt": "Master bathroom renovation with walk-in shower", "label": "Bathroom Renovation" },
+    { "src": "/images/gallery/dormer-addition.jpg", "alt": "Dormer addition expanding attic space on Long Island home", "label": "Dormer Addition" },
+    { "src": "/images/gallery/basement-finish.jpg", "alt": "Finished basement converted to modern living space", "label": "Basement Finish" },
+    { "src": "/images/gallery/full-home-renovation.jpg", "alt": "Full home renovation complete interior rebuild", "label": "Full Home Renovation" }
   ]
 }
