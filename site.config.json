@@ -11,7 +11,7 @@
     "zip": "11762",
     "hours": "Mon–Sat 8am–7pm",
     "domain": "www.greenempirebuild.com",
-    "zapierWebhook": "REPLACE_WITH_NEW_ZAPIER_WEBHOOK_URL",
+    "zapierWebhook": "https://hooks.zapier.com/hooks/catch/26765756/uv12zer/",
     "font": "Inter",
     "accentColor": "#C17F3A",
     "forms": {
