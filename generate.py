@@ -73,7 +73,7 @@ def nav(active=""):
   <nav class="main-nav" aria-label="Main navigation">
     <div class="container nav-inner">
       <a href="/" class="nav-logo">
-        <img src="/images/logo.svg" alt="{NAME} logo" height="96" style="filter:brightness(0) invert(1)" />
+        <img src="/images/logo.png" alt="{NAME} logo" height="96" />
       </a>
       <ul class="nav-links">
         <li class="has-dropdown">
@@ -101,7 +101,7 @@ def nav(active=""):
 </header>
 <div class="mobile-menu" id="mobile-menu">
   <div class="mobile-menu-header">
-    <img src="/images/logo.svg" alt="{NAME}" height="40" style="filter:brightness(0) invert(1)" />
+    <img src="/images/logo.png" alt="{NAME}" height="40" />
     <button id="mobile-close" aria-label="Close">✕</button>
   </div>
   <a href="/request-service.html" class="btn btn-primary mobile-cta">Get Free Estimate</a>
@@ -129,7 +129,7 @@ def footer():
   <div class="footer-main">
     <div class="container footer-grid">
       <div class="footer-brand">
-        <a href="/"><img src="/images/logo.svg" alt="{NAME}" height="72" class="footer-logo" style="filter:brightness(0) invert(1)" /></a>
+        <a href="/"><img src="/images/logo.png" alt="{NAME}" height="72" class="footer-logo" /></a>
         <p>{B.get('footerTagline', f"{NAME} — locally based in {B['city']}, NY.")}</p>
         <a href="tel:{PHONE_RAW}" class="footer-phone">{PHONE}</a>
         <p class="footer-address">{ADDRESS}</p>
@@ -185,10 +185,9 @@ def head(title, desc, canonical, schema=""):
   <meta property="og:url" content="https://{B['domain']}{canonical}" />
   <meta property="og:image" content="/images/hero-bg.jpg" />
   <meta name="robots" content="index, follow" />
-  <link rel="icon" type="image/svg+xml" href="/images/logo.svg" />
+  <link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="/images/logo.png" />
   <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
-  <link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
   {schema}
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
