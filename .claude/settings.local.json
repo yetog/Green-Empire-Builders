@@ -19,7 +19,14 @@
       "Bash(git commit *)",
       "mcp__claude_ai_Gmail__create_draft",
       "WebFetch(domain:diamondridgeny.com)",
-      "WebFetch(domain:tcrbuilders.com)"
+      "WebFetch(domain:tcrbuilders.com)",
+      "Bash(unzip *)",
+      "Bash(cp \"/tmp/reaction_photos/Main photo - hero website.png\" images/hero-bg.jpg)",
+      "Bash(cp \"/tmp/reaction_photos/Main photo - hoomepagepng.png\" images/hero-slides/slide-2.jpg)",
+      "Bash(cp \"/tmp/reaction_photos/Main photo - hero.png\" images/hero-slides/slide-3.jpg)",
+      "Bash(cp \"/tmp/reaction_photos/Bathroom.png\" images/services/bathroom-remodeling.jpg)",
+      "Bash(cp \"/tmp/reaction_photos/Bathroom.png\" images/gallery/bathroom-renovation.jpg)",
+      "Bash(git push *)"
     ]
   }
 }

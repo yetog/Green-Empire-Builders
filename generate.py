@@ -73,7 +73,7 @@ def nav(active=""):
   <nav class="main-nav" aria-label="Main navigation">
     <div class="container nav-inner">
       <a href="/" class="nav-logo">
-        <img src="/images/logo.svg" alt="{NAME} logo" height="96" />
+        <img src="/images/logo.svg" alt="{NAME} logo" height="96" style="filter:brightness(0) invert(1)" />
       </a>
       <ul class="nav-links">
         <li class="has-dropdown">
@@ -101,7 +101,7 @@ def nav(active=""):
 </header>
 <div class="mobile-menu" id="mobile-menu">
   <div class="mobile-menu-header">
-    <img src="/images/logo.svg" alt="{NAME}" height="40" />
+    <img src="/images/logo.svg" alt="{NAME}" height="40" style="filter:brightness(0) invert(1)" />
     <button id="mobile-close" aria-label="Close">✕</button>
   </div>
   <a href="/request-service.html" class="btn btn-primary mobile-cta">Get Free Estimate</a>
@@ -185,8 +185,8 @@ def head(title, desc, canonical, schema=""):
   <meta property="og:url" content="https://{B['domain']}{canonical}" />
   <meta property="og:image" content="/images/hero-bg.jpg" />
   <meta name="robots" content="index, follow" />
-  <link rel="icon" type="image/png" href="/images/logo.svg" />
-  <link rel="apple-touch-icon" href="/images/logo.svg" />
+  <link rel="icon" type="image/svg+xml" href="/images/logo.svg" />
+  <link rel="apple-touch-icon" href="/images/logo.png" />
   <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
   <link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
   {schema}
@@ -1190,8 +1190,8 @@ def make_thank_you():
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Request Received | {NAME}</title>
   <meta name="robots" content="noindex" />
-  <link rel="icon" type="image/png" href="/images/logo.svg" />
-  <link rel="apple-touch-icon" href="/images/logo.svg" />
+  <link rel="icon" type="image/svg+xml" href="/images/logo.svg" />
+  <link rel="apple-touch-icon" href="/images/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="{B.get('fontUrl', 'https://fonts.googleapis.com/css2?family=' + FONT.replace(' ', '+') + ':wght@400;500;600;700;800&display=swap')}" rel="stylesheet" />
