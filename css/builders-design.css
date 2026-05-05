@@ -12,7 +12,15 @@
 
 /* ── Hero — letter-spacing & size refinement ────────────────── */
 .hero { min-height: 100vh; }
-.hero-brand-name { display: none; }
+.hero-brand-name {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.75);
+  margin-bottom: 10px;
+}
 .hero h1 {
   letter-spacing: 0.04em;
   font-size: clamp(2rem, 4.5vw, 3rem);
@@ -21,15 +29,16 @@
   font-weight: 800;
 }
 .hero-badge {
-  font-size: 0.68rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,.6);
-  border: 1px solid rgba(255,255,255,.25);
-  border-radius: 2px;
-  padding: 5px 14px;
-  margin-bottom: 24px;
   display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 5px 14px;
+  border-radius: 999px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
 }
 .hero-trust span {
   font-size: 0.72rem;

@@ -482,8 +482,9 @@ def make_homepage():
   <div class="hero-overlay"></div>
   <div class="container">
     <div class="hero-content">
+      <span class="hero-brand-name">{NAME}</span>
       <span class="hero-badge">Nassau &amp; Suffolk Counties · Long Island, NY</span>
-      <h1 id="hero-h1">{B['tagline']}</h1>
+      <h1>{B['tagline']}</h1>
       <p id="hero-p">{B.get('heroSubtext', '')}</p>
       <div class="hero-actions">
         <a href="/request-service.html" class="btn btn-primary btn-lg">Get a Free Estimate</a>
