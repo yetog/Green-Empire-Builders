@@ -677,6 +677,9 @@ def make_homepage():
 def make_service_page(s):
     bc, bc_schema = breadcrumbs([("Home", "/"), ("Services", "/services/"), (s["name"], None)])
     bullets = "\n".join(f"<li>{b}</li>" for b in s["bullets"])
+    svc_img = s.get("image", "")
+    hero_class = "page-hero page-hero-photo" if svc_img else "page-hero"
+    hero_style = f' style="background-image:url(\'{svc_img}\')"' if svc_img else ""
     other_services = "\n".join(
         f'<a href="/services/{o["slug"]}/" class="related-link">{o["name"]}</a>'
         for o in SERVICES if o["slug"] != s["slug"]
@@ -690,7 +693,7 @@ def make_service_page(s):
 {nav(active="services")}
 {bc}
 
-<section class="page-hero">
+<section class="{hero_class}"{hero_style}>
   <div class="container">
     <h1>{s['name']} in {B['city']}, NY</h1>
     <p>{s['heroText']}</p>
