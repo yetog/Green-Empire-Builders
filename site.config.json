@@ -13,7 +13,7 @@
     "domain": "www.greenempirebuild.com",
     "zapierWebhook": "https://hooks.zapier.com/hooks/catch/26765756/uv12zer/",
     "font": "Inter",
-    "accentColor": "#C17F3A",
+    "accentColor": "#D4A017",
     "forms": {
       "notifyEmail": "greenempirebuilders@gmail.com",
       "notifyPhone": "5167121231"
@@ -26,10 +26,10 @@
     "facebook": "https://www.facebook.com/GreenEmpireBuilders/",
     "instagram": "https://www.instagram.com/greenempirebuilders/",
     "googleMapsEmbed": "",
-    "primaryColor": "#1F4D2B",
-    "primaryDark": "#163520",
-    "secondaryColor": "#2B6B3A",
-    "secondaryDark": "#1F4D2B",
+    "primaryColor": "#1A1A1A",
+    "primaryDark": "#0D0D0D",
+    "secondaryColor": "#2C2C2C",
+    "secondaryDark": "#1A1A1A",
     "industry": "Construction & Renovation",
     "industryLower": "construction & renovation",
     "heroSlides": [

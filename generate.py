@@ -185,6 +185,8 @@ def head(title, desc, canonical, schema=""):
   <meta property="og:url" content="https://{B['domain']}{canonical}" />
   <meta property="og:image" content="/images/hero-bg.jpg" />
   <meta name="robots" content="index, follow" />
+  <link rel="icon" type="image/png" href="/images/logo.png" />
+  <link rel="apple-touch-icon" href="/images/logo.png" />
   <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
   {schema}
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -1184,6 +1186,8 @@ def make_thank_you():
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Request Received | {NAME}</title>
   <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/png" href="/images/logo.png" />
+  <link rel="apple-touch-icon" href="/images/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="{B.get('fontUrl', 'https://fonts.googleapis.com/css2?family=' + FONT.replace(' ', '+') + ':wght@400;500;600;700;800&display=swap')}" rel="stylesheet" />
