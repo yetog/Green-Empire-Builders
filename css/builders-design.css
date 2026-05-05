@@ -3,13 +3,11 @@
    Inter font, accent color, Diamond Ridge-inspired improvements
    ═══════════════════════════════════════════════════════════════ */
 
-/* ── Accent color token ─────────────────────────────────────── */
+/* ── Design tokens (accent comes from theme.css) ────────────── */
 :root {
-  --accent:       #C17F3A;
-  --accent-dark:  #A56B2C;
-  --ink:          #080C08;
-  --warm-bg:      #F7F8F5;
-  --rule:         #D6DDD2;
+  --ink:          #080808;
+  --warm-bg:      #F7F7F5;
+  --rule:         #DDDDD9;
 }
 
 /* ── Hero — letter-spacing & size refinement ────────────────── */
@@ -55,9 +53,9 @@ h3 { letter-spacing: 0.5px; }
 /* ── Buttons ────────────────────────────────────────────────── */
 .btn { letter-spacing: 0.1em; font-size: 0.78rem; font-weight: 600; border-radius: 2px; }
 
-/* Primary — slightly brighter green */
-.btn-primary { background: #276338; }
-.btn-primary:hover { background: #1F4D2B; }
+/* Primary — gold CTA */
+.btn-primary { background: var(--accent); }
+.btn-primary:hover { background: var(--accent-dark); }
 
 /* Outlined green — secondary CTA */
 .btn-outline-green {
@@ -100,7 +98,7 @@ h3 { letter-spacing: 0.5px; }
 .contact-card:hover .icon-circle { border-color: rgba(255,255,255,.65); }
 
 /* ── Difference section ─────────────────────────────────────── */
-.difference-section { background: #111511; padding: 80px 0; }
+.difference-section { background: #111111; padding: 80px 0; }
 .difference-grid { counter-reset: diff; }
 .difference-card {
   border-radius: 2px;
@@ -190,7 +188,7 @@ a.card-link:hover { color: var(--accent); }
 .btn-outline:hover { background: var(--green); color: #fff; }
 
 /* ── Footer ─────────────────────────────────────────────────── */
-.site-footer { background: #0a0c0a; border-top: 1px solid rgba(255,255,255,.05); }
+.site-footer { background: #0a0a0a; border-top: 1px solid rgba(255,255,255,.05); }
 .footer-col h4 {
   font-size: 0.65rem;
   font-weight: 600;
@@ -285,7 +283,7 @@ a.card-link:hover { color: var(--accent); }
   text-transform: uppercase;
 }
 .work-item-placeholder {
-  background: #141814;
+  background: #141414;
   border: 1px solid rgba(255,255,255,.06);
   display: flex;
   align-items: center;

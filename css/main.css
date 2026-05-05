@@ -464,7 +464,7 @@ nav.breadcrumbs {
 
 /* Page hero (inner pages) */
 .page-hero {
-  background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 60%, #2d7a45 100%);
+  background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 60%, var(--green-light) 100%);
   color: #fff;
   padding: 60px 0;
   position: relative;
@@ -536,7 +536,7 @@ nav.breadcrumbs {
   color: var(--black);
 }
 .booking-card-header {
-  background: linear-gradient(135deg, var(--green-dark) 0%, #2d6e3e 100%);
+  background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-light) 100%);
   color: #fff;
   padding: 22px 24px 18px;
   position: relative;
