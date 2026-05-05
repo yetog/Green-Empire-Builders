@@ -256,7 +256,6 @@ def booking_form(compact=False):
     <div class="form-group"><label>Details</label><textarea name="message" rows="3" placeholder="Tell us about your project..."></textarea></div>
     <input type="text" name="_gotcha" style="display:none" />
     <input type="hidden" name="_next" value="/thank-you.html" />
-    <div class="form-check"><label class="form-check-label"><input type="checkbox" name="sms_opt_in" value="yes" class="form-check-input" /> Text me updates about my estimate</label></div>
     <button type="submit" class="btn btn-primary btn-block">Send Request →</button>
   </form>
 </div>"""
@@ -283,7 +282,6 @@ def booking_form(compact=False):
     <input type="text" name="_gotcha" style="display:none" />
     <input type="hidden" name="_subject" value="New Estimate Request — {NAME}" />
     <input type="hidden" name="_next" value="/thank-you.html" />
-    <div class="form-check"><label class="form-check-label"><input type="checkbox" name="sms_opt_in" value="yes" class="form-check-input" /> Text me updates about my estimate</label></div>
     <button type="submit" class="btn btn-primary btn-block">Send My Request →</button>
     <p class="form-disclaimer">We respect your privacy. No spam, ever.</p>
   </form>
@@ -731,7 +729,7 @@ def make_service_page(s):
 
 <section class="{hero_class}"{hero_style}>
   <div class="container">
-    <h1>{s['name']} in {B['city']}, NY</h1>
+    <h1>{s['name']}</h1>
     <p>{s['heroText']}</p>
     <div class="hero-actions">
       <a href="/request-service.html" class="btn btn-secondary btn-lg">Get Free Estimate</a>
