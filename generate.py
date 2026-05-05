@@ -73,7 +73,7 @@ def nav(active=""):
   <nav class="main-nav" aria-label="Main navigation">
     <div class="container nav-inner">
       <a href="/" class="nav-logo">
-        <img src="/images/logo.png" alt="{NAME} logo" height="96" />
+        <img src="/images/logo.svg" alt="{NAME} logo" height="96" />
       </a>
       <ul class="nav-links">
         <li class="has-dropdown">
@@ -101,7 +101,7 @@ def nav(active=""):
 </header>
 <div class="mobile-menu" id="mobile-menu">
   <div class="mobile-menu-header">
-    <img src="/images/logo.png" alt="{NAME}" height="40" />
+    <img src="/images/logo.svg" alt="{NAME}" height="40" />
     <button id="mobile-close" aria-label="Close">✕</button>
   </div>
   <a href="/request-service.html" class="btn btn-primary mobile-cta">Get Free Estimate</a>
@@ -129,7 +129,7 @@ def footer():
   <div class="footer-main">
     <div class="container footer-grid">
       <div class="footer-brand">
-        <a href="/"><img src="/images/logo.png" alt="{NAME}" height="72" class="footer-logo" /></a>
+        <a href="/"><img src="/images/logo.svg" alt="{NAME}" height="72" class="footer-logo" style="filter:brightness(0) invert(1)" /></a>
         <p>{B.get('footerTagline', f"{NAME} — locally based in {B['city']}, NY.")}</p>
         <a href="tel:{PHONE_RAW}" class="footer-phone">{PHONE}</a>
         <p class="footer-address">{ADDRESS}</p>
@@ -185,9 +185,10 @@ def head(title, desc, canonical, schema=""):
   <meta property="og:url" content="https://{B['domain']}{canonical}" />
   <meta property="og:image" content="/images/hero-bg.jpg" />
   <meta name="robots" content="index, follow" />
-  <link rel="icon" type="image/png" href="/images/logo.png" />
-  <link rel="apple-touch-icon" href="/images/logo.png" />
+  <link rel="icon" type="image/png" href="/images/logo.svg" />
+  <link rel="apple-touch-icon" href="/images/logo.svg" />
   <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+  <link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
   {schema}
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -1186,8 +1187,8 @@ def make_thank_you():
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Request Received | {NAME}</title>
   <meta name="robots" content="noindex" />
-  <link rel="icon" type="image/png" href="/images/logo.png" />
-  <link rel="apple-touch-icon" href="/images/logo.png" />
+  <link rel="icon" type="image/png" href="/images/logo.svg" />
+  <link rel="apple-touch-icon" href="/images/logo.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="{B.get('fontUrl', 'https://fonts.googleapis.com/css2?family=' + FONT.replace(' ', '+') + ':wght@400;500;600;700;800&display=swap')}" rel="stylesheet" />
@@ -1198,7 +1199,7 @@ def make_thank_you():
 <body>
 <header class="site-header">
   <nav class="main-nav"><div class="container nav-inner">
-    <a href="/" class="nav-logo"><img src="/images/logo.png" alt="{NAME}" height="48" /></a>
+    <a href="/" class="nav-logo"><img src="/images/logo.svg" alt="{NAME}" height="48" /></a>
     <a href="tel:{PHONE_RAW}" class="nav-phone">{PHONE}</a>
   </div></nav>
 </header>

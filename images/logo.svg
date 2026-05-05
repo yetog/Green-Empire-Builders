@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 130">
+  <text x="260" y="76"
+    text-anchor="middle"
+    font-family="'Arial Black', 'Helvetica Neue', Arial, sans-serif"
+    font-weight="900"
+    font-size="60"
+    letter-spacing="2"
+    fill="#111111">GREEN EMPIRE</text>
+  <line x1="28" y1="95" x2="138" y2="95" stroke="#111111" stroke-width="1.5"/>
+  <text x="260" y="109"
+    text-anchor="middle"
+    font-family="Arial, 'Helvetica Neue', sans-serif"
+    font-weight="400"
+    font-size="17"
+    letter-spacing="10"
+    fill="#111111">BUILDERS</text>
+  <line x1="382" y1="95" x2="492" y2="95" stroke="#111111" stroke-width="1.5"/>
+</svg>
