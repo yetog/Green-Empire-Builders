@@ -11,7 +11,7 @@
 }
 
 /* ── Hero — letter-spacing & size refinement ────────────────── */
-.hero { min-height: 100vh; }
+.hero { min-height: 600px; }
 .hero-brand-name {
   display: block;
   font-size: 0.85rem;

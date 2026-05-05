@@ -71,9 +71,13 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.disabled = true;
 
       try {
+        const fd = new FormData(form);
+        const first = fd.get('first_name') || '';
+        const last  = fd.get('last_name')  || '';
+        if (first || last) fd.append('name', `${first} ${last}`.trim());
         const res = await fetch(form.action, {
           method: 'POST',
-          body: new FormData(form)
+          body: fd
         });
         if (res.ok) {
           window.location.href = '/thank-you.html';
