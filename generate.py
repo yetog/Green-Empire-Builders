@@ -655,10 +655,10 @@ def make_homepage():
 <!-- CTA -->
 <section class="cta-banner">
   <div class="container">
-    <h2>Ready to Reimagine Your Outdoor Space?</h2>
+    <h2>Ready to Start Your Project?</h2>
     <p>No pressure, no obligation — just honest work and fair pricing from a team that knows Long Island.</p>
     <div class="cta-actions">
-      <a href="/request-service.html" class="btn btn-secondary btn-lg">Request a Design Review</a>
+      <a href="/request-service.html" class="btn btn-secondary btn-lg">Get a Free Estimate</a>
       <a href="tel:{PHONE_RAW}" class="btn btn-outline-white btn-lg">Call {PHONE}</a>
     </div>
   </div>
@@ -1189,7 +1189,7 @@ def make_thank_you():
   <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Request Received | {NAME}</title>
   <meta name="robots" content="noindex" />
-  <link rel="icon" type="image/svg+xml" href="/images/logo.svg" />
+  <link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="/images/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -1201,7 +1201,7 @@ def make_thank_you():
 <body>
 <header class="site-header">
   <nav class="main-nav"><div class="container nav-inner">
-    <a href="/" class="nav-logo"><img src="/images/logo.svg" alt="{NAME}" height="48" /></a>
+    <a href="/" class="nav-logo"><img src="/images/logo.png" alt="{NAME}" height="48" /></a>
     <a href="tel:{PHONE_RAW}" class="nav-phone">{PHONE}</a>
   </div></nav>
 </header>
