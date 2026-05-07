@@ -1021,7 +1021,7 @@ def make_about():
 <section class="section">
   <div class="container">
     <div class="split-section">
-      <div class="split-img"><img src="/images/Hero.png" alt="{NAME} — locally owned and operated in {B['city']}, NY" /></div>
+      <div class="split-img"><img src="/images/team.png" alt="{NAME} team — locally owned and operated in {B['city']}, NY" /></div>
       <div class="split-content">
         <span class="eyebrow">Who We Are</span>
         <h2>Built for Long Island</h2>
