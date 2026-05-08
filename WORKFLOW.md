@@ -301,45 +301,33 @@ Rules:
 
 ---
 
-## Session Log — Green Empire Build (March 2026)
+## Session Log — Green Empire Builders (GEB)
 
-### Session 1
-- Pulled repo, did codebase analysis
-- Identified UI gaps vs. Grounds Guys reference
-- Added gallery section, SMS opt-in checkbox, service card photo support
-- Built "How Green Empire Can Help" section
-- Hero redesign (split layout) — built, shown, **reverted** at user request
-- Pushed to GitHub
+### Session 1 — Initial Build (April 2026)
+- Forked site factory pattern from GEL repo
+- Populated `site.config.json` with GEB brand details (7 services, 21 service areas, Long Island focus)
+- Configured Zapier webhook for form submissions (replacing Formspree)
+- Built `builders-design.css` as a GEB-specific design layer on top of `main.css`
+- Gold accent color (`#D4A017`) applied via `theme.css`
+- Deployed to `greenempirebuild.com` via GitHub + nginx
+- Set up separate repo `yetog/Green-Empire-Builders` (isolated from GEL codebase)
 
-### Session 2
-- Implemented all Ariel client feedback:
-  - 10 services → 7 (outdoor renovation focus)
-  - Tagline updated to "Landscaping & Outdoor Renovation"
-  - "Licensed" → "Certified" everywhere
-  - Removed all "Open 24/7" / "24/7" references
-  - Updated FAQs (7 new questions)
-  - Removed commercial/snow/mowing from all copy
-- Deleted 10 old service directories, generated 7 new ones
-- Pushed + wrote email reply to Ariel
+### Session 2 — Ariel Client Feedback + Design Polish (April/May 2026)
+- Applied 5 items of Ariel client feedback:
+  - Removed city name from service page h1 (e.g. "Bathroom Remodeling" not "...in Massapequa Park, NY")
+  - Removed SMS opt-in checkbox from both form variants
+  - Removed 4th hero slide (slide-4.jpg) per photo review
+  - Fixed form to send combined `name` field to Zapier (was sending `first_name` / `last_name` separately, causing blank Name in email notifications)
+  - Hero badge pill styled gold using `var(--accent)`
+- Replaced all emojis site-wide with inline Lucide SVGs (`_svg()` helper, no external CDN)
+- Added hero slideshow carousel (3 slides, fade transition, dot nav, pause on hover)
+- Added service page photo hero backgrounds (`.page-hero-photo` class, dark gradient overlay)
+- Matched hero structure to GEL: brand name eyebrow, badge pill, trust indicators row
+- Restored original `logo.png` from git history (commit `ffbebb5`) after incorrect logo was deployed
+- Pushed all changes; server `git pull` required to deploy
 
-### Session 3 (this session)
-- Added nginx deployment context to AGENTS.md
-- Confirmed site live at https://zaylegend.com/green-empire/
-- Added "How It Works" 3-step section to homepage
-- Rebuilt thank-you page (full "What Happens Next" journey)
-- Gallery placeholders redesigned (dark green, "Coming Soon" label)
-- Removed emojis from service cards (clean gradient placeholder)
-- Removed emojis from related-links and city service lists
-- Logo increased to 72px
-- Removed redundant "How We Help" prose section
-- Fixed footer franchise disclaimer
-- Nav dropdown: "Residential & Commercial" → "Our Services"
-- Added review avatar initials (MT, SK, RA)
-- Built 3 real blog pages with content (no more 404s)
-- Mapped 8 Gemini AI photos across service cards, gallery, Why Us, About, hero
-- All 6 gallery slots filled
-- Redundant homepage copy trimmed (1-business-hour x4 → x1, trust signals consolidated)
-- Hero background → stunning front yard photo
-- Why Us → team of 4 in Green Empire shirts
-- About page → Hero.png (owner/team member in branded shirt)
-- Written MEETING-BRIEF.md and WORKFLOW.md
+### Session 3 — Hero Sizing + Logo + Team Photo (May 2026)
+- Logo height increased to 76px (was 60px, too small in 96px nav bar)
+- Hero `min-height` set to `600px` (was `100vh`, making hero full-screen and mismatched vs. GEL)
+- Added team photo (`images/team.png`) to About Us page split layout (replaced `Hero.png` placeholder)
+- `builders-design.css` hero refinements: letter-spacing, font sizes, h1 uppercase all matching GEL proportions
