@@ -1,11 +1,5 @@
-# robots.txt for Green Empire Builders
-# https://www.greenempirebuild.com
-
 User-agent: *
 Allow: /
-
-# Sitemap location
-Sitemap: https://www.greenempirebuild.com/sitemap.xml
-
-# Disallow admin/internal paths (if any)
 Disallow: /thank-you.html
+
+Sitemap: https://www.greenempirebuild.com/sitemap.xml
